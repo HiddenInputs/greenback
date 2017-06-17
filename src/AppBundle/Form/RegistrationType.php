@@ -7,10 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Count;
 
 class RegistrationType extends AbstractType
 {
+    /**
+     * @var CountryGenerator
+     */
     private $country;
 
     public function __construct()
@@ -18,6 +20,9 @@ class RegistrationType extends AbstractType
         $this->country = new CountryGenerator();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 

@@ -1,6 +1,5 @@
-default_index:
-      path: /
-      defaults: { _controller: AppBundle:Default:index }
+app_homepage:
+    resource: routes/homepage_routing.yml
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
