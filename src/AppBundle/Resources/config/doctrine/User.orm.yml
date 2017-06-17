@@ -6,3 +6,10 @@ AppBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
+    fields:
+        country:
+            type: string
+            length: 100
+        currency:
+            type: string
+            length: 50;
