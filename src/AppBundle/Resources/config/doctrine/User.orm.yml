@@ -13,3 +13,7 @@ AppBundle\Entity\User:
         currency:
             type: string
             length: 50;
+    oneToMany:
+        categories:
+            targetEntity: AppBundle\Entity\Category
+            mappedBy: user
