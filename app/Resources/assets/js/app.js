@@ -1,7 +1,7 @@
 window.Vue = require('vue');
 window.Chart = require('chart.js');
 
-Vue.component('home', require('./Home.vue'));
+Vue.component('home', require('./components/Home.vue'));
 Vue.component('landing', require('./components/Landing.vue'));
 Vue.component('login', require('./components/Login.vue'));
 Vue.component('register', require('./components/Register.vue'));
