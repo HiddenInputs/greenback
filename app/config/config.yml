@@ -81,3 +81,6 @@ fos_user:
     profile:
         form:
             type: AppBundle\Form\ProfileType
+
+iulyanp_elixir_mix:
+    web_dir: "%web_dir%"

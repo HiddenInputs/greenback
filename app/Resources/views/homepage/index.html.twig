@@ -1,17 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="authentication-details">
-    <div class="container">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-            <p>Logged as: {{ app.user.username }}</p>
-            <a href="{{ path('fos_user_profile_edit') }}">Edit your profile</a>
-            <a href="{{ path('fos_user_change_password') }}">Change your password</a>
-        {% else %}
-            <a href="{{ path('fos_user_security_login') }}">Login</a>
-            <a href="{{ path('fos_user_registration_register') }}">Register</a>
-        {% endif %}
+    <section class="authentication-details">
+        <div class="container">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+                <p>Logged as: {{ app.user.username }}</p>
+                <a href="{{ path('fos_user_profile_edit') }}">Edit your profile</a>
+                <a href="{{ path('fos_user_change_password') }}">Change your password</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">Login</a>
+                <a href="{{ path('fos_user_registration_register') }}">Register</a>
+            {% endif %}
+        </div>
+    </section>
+    <div id="app">
+
     </div>
-</section>
 {% endblock %}
