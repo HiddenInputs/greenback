@@ -1,0 +1,21 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * Transactions
+ */
+class Transactions
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var int
+     */
+    private $quantity;
+
+
+}

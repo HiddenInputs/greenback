@@ -1,0 +1,22 @@
+<?php
+
+namespace AppBundle\Entity;
+
+/**
+ * Payment
+ */
+class Payment
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var float
+     */
+    private $amount;
+
+
+
+}
