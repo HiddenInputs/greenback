@@ -10,14 +10,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationType extends AbstractType
 {
-    /**
-     * @var CountryGenerator
-     */
+
     private $country;
 
-    public function __construct()
+    /**
+     * RegistrationType constructor.
+     * @param CountryGenerator $country
+     */
+    public function __construct(CountryGenerator $country)
     {
-        $this->country = new CountryGenerator();
+        $this->country = $country;
+
     }
 
     /**
@@ -25,15 +28,16 @@ class RegistrationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder->add('country', ChoiceType::class, [
+            'placeholder' => 'Select your country',
             'choices' => $this->country->getCountryNames(),
             'choice_label' => function($value, $key, $index) {
-                    return $value;
+                return $value;
             }
         ]);
 
         $builder->add('currency', ChoiceType::class, [
+           'placeholder' => 'Select your currency',
            'choices' => $this->country->getCurrencies(),
            'choice_label' => function($value, $key, $index) {
                 return $value;

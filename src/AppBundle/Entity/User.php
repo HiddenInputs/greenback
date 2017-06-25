@@ -33,34 +33,63 @@ class User extends BaseUser
         parent::__construct();
     }
 
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
     public function getCountry()
     {
         return $this->country;
     }
 
-    public function setCountry($country)
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     *
+     * @return User
+     */
+    public function setCurrency($currency)
     {
-        $this->country = $country;
+        $this->currency = $currency;
+
+        return $this;
     }
 
+    /**
+     * Get currency
+     *
+     * @return string
+     */
     public function getCurrency()
     {
         return $this->currency;
     }
 
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-    }
-
     /**
      * Add category
      *
-     * @param Category $category
+     * @param \AppBundle\Entity\Category $category
      *
      * @return User
      */
-    public function addCategory(Category $category)
+    public function addCategory(\AppBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
 
@@ -70,9 +99,9 @@ class User extends BaseUser
     /**
      * Remove category
      *
-     * @param Category $category
+     * @param \AppBundle\Entity\Category $category
      */
-    public function removeCategory(Category $category)
+    public function removeCategory(\AppBundle\Entity\Category $category)
     {
         $this->categories->removeElement($category);
     }
@@ -80,7 +109,7 @@ class User extends BaseUser
     /**
      * Get categories
      *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {

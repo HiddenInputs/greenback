@@ -1,0 +1,32 @@
+AppBundle\Entity\Payment:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PaymentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        amount:
+            type: float
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: payments
+            joinColumn:
+               name: user_id
+               referencedColumnName: id
+    manyToOne:
+        category:
+            targetEntity: AppBundle\Entity\Category
+            inversedBy: payments
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+    oneToOne:
+        transactions:
+            targetEntity: AppBundle\Entity\Transactions
+            mappedBy: payment
+    lifecycleCallbacks: {  }

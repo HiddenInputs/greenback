@@ -29,10 +29,9 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    app.country.generator:
+        class: AppBundle\Service\CountryGenerator
+        arguments: []
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
@@ -42,3 +41,5 @@ services:
         class: AppBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
+
+

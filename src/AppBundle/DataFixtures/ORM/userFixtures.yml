@@ -1,8 +1,0 @@
-AppBundle\Entity\User:
-    user_{1..10}:
-        username: <username()>
-        email:  <email()>
-        password: <password()>
-        enabled:  <boolean(75)>
-        country: <country()>
-        currency: <currency()>

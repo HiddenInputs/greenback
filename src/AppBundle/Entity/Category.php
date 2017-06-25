@@ -17,11 +17,28 @@ class Category
      */
     private $name;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $payments;
+
+    /**
+     * @var \AppBundle\Entity\User
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->payments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -51,20 +68,49 @@ class Category
     {
         return $this->name;
     }
-    /**
-     * @var \AppBundle\Entity\User
-     */
-    private $user;
 
+    /**
+     * Add payment
+     *
+     * @param \AppBundle\Entity\Payment $payment
+     *
+     * @return Category
+     */
+    public function addPayment(\AppBundle\Entity\Payment $payment)
+    {
+        $this->payments[] = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Remove payment
+     *
+     * @param \AppBundle\Entity\Payment $payment
+     */
+    public function removePayment(\AppBundle\Entity\Payment $payment)
+    {
+        $this->payments->removeElement($payment);
+    }
+
+    /**
+     * Get payments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPayments()
+    {
+        return $this->payments;
+    }
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param \AppBundle\Entity\User $user
      *
      * @return Category
      */
-    public function setUser(User $user = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -74,7 +120,7 @@ class Category
     /**
      * Get user
      *
-     * @return User
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

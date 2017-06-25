@@ -1,7 +1,7 @@
-AppBundle\Entity\Category:
+AppBundle\Entity\Transactions:
     type: entity
     table: null
-    repositoryClass: AppBundle\Repository\CategoryRepository
+    repositoryClass: AppBundle\Repository\TransactionsRepository
     id:
         id:
             type: integer
@@ -9,18 +9,20 @@ AppBundle\Entity\Category:
             generator:
                 strategy: AUTO
     fields:
-        name:
-            type: string
-            length: '100'
+        quantity:
+            type: integer
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
-            inversedBy: categories
+            inversedBy: transactions
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-    oneToMany:
-        payments:
+    oneToOne:
+        payment:
             targetEntity: AppBundle\Entity\Payment
-            mappedBy: category
+            inversedBy: transactions
+            joinColumn:
+                name: payment_id
+                referencedColumnName: id
     lifecycleCallbacks: {  }
