@@ -38,7 +38,7 @@ class RegistrationType extends AbstractType
 
         $builder->add('currency', ChoiceType::class, [
            'placeholder' => 'Select your currency',
-           'choices' => $this->country->getCurrencies(),
+           'choices' => array_unique($this->country->getCurrencies()),
            'choice_label' => function($value, $key, $index) {
                 return $value;
            }

@@ -32,7 +32,10 @@ let mix = require('laravel-mix').mix;
 mix
     .setPublicPath('web') // assuming that your public path is the symfony web directory
     .js('app/Resources/assets/js/app.js', 'js')
+    .copy('app/Resources/assets/css/', 'web/css')
+    .copy('app/Resources/assets/images/', 'web/images')
     .sass('app/Resources/assets/sass/app.scss', 'css');
+
 
 /*
  | If your app requires jQuery, you can manually add it.
