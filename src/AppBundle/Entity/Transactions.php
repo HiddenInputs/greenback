@@ -17,16 +17,10 @@ class Transactions
      */
     private $quantity;
 
-
     /**
      * @var \AppBundle\Entity\Payment
      */
     private $payment;
-
-    /**
-     * @var \AppBundle\Entity\User
-     */
-    private $user;
 
 
     /**
@@ -85,29 +79,5 @@ class Transactions
     public function getPayment()
     {
         return $this->payment;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Transactions
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

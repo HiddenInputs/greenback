@@ -12,17 +12,17 @@ AppBundle\Entity\Transactions:
         quantity:
             type: integer
     manyToOne:
-        user:
-            targetEntity: AppBundle\Entity\User
-            inversedBy: transactions
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
-    oneToOne:
         payment:
             targetEntity: AppBundle\Entity\Payment
             inversedBy: transactions
             joinColumn:
                 name: payment_id
+                referencedColumnName: id
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
+            inversedBy: transactions
+            joinColumn:
+                name: user_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }

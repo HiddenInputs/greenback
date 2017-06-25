@@ -16,7 +16,6 @@ class Category
      * @var string
      */
     private $name;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      */

@@ -22,16 +22,10 @@ class User extends BaseUser
      * @var string
      */
     protected $currency;
-
     /**
-     * @var Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $categories;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
 
     /**

@@ -11,6 +11,10 @@ AppBundle\Entity\Payment:
     fields:
         amount:
             type: float
+    oneToMany:
+        transactions:
+            targetEntity: AppBundle\Entity\Transactions
+            mappedBy: payment
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
@@ -25,8 +29,4 @@ AppBundle\Entity\Payment:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
-    oneToOne:
-        transactions:
-            targetEntity: AppBundle\Entity\Transactions
-            mappedBy: payment
     lifecycleCallbacks: {  }

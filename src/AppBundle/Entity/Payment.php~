@@ -16,7 +16,4 @@ class Payment
      * @var float
      */
     private $amount;
-
-
-
 }

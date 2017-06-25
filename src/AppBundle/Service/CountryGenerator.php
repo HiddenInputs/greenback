@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tomek
- * Date: 16.06.17
- * Time: 22:42
- */
 
 namespace AppBundle\Service;
+
 use Rinvex\Country\Loader;
 
 class CountryGenerator

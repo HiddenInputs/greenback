@@ -16,11 +16,8 @@ class Payment
      * @var float
      */
     private $amount;
-
-
-
     /**
-     * @var \AppBundle\Entity\Transactions
+     * @var \Doctrine\Common\Collections\Collection
      */
     private $transactions;
 
@@ -29,6 +26,13 @@ class Payment
      */
     private $user;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->transactions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -65,23 +69,33 @@ class Payment
     }
 
     /**
-     * Set transactions
+     * Add transaction
      *
-     * @param \AppBundle\Entity\Transactions $transactions
+     * @param \AppBundle\Entity\Transactions $transaction
      *
      * @return Payment
      */
-    public function setTransactions(\AppBundle\Entity\Transactions $transactions = null)
+    public function addTransaction(\AppBundle\Entity\Transactions $transaction)
     {
-        $this->transactions = $transactions;
+        $this->transactions[] = $transaction;
 
         return $this;
     }
 
     /**
+     * Remove transaction
+     *
+     * @param \AppBundle\Entity\Transactions $transaction
+     */
+    public function removeTransaction(\AppBundle\Entity\Transactions $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+    }
+
+    /**
      * Get transactions
      *
-     * @return \AppBundle\Entity\Transactions
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTransactions()
     {

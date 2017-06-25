@@ -20,7 +20,6 @@ class RegistrationType extends AbstractType
     public function __construct(CountryGenerator $country)
     {
         $this->country = $country;
-
     }
 
     /**
