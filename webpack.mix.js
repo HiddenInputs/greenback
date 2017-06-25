@@ -36,6 +36,7 @@ mix
     .copy('app/Resources/assets/images/', 'web/images')
     .sass('app/Resources/assets/sass/app.scss', 'css');
 
+
 /*
  | If your app requires jQuery, you can manually add it.
  |
