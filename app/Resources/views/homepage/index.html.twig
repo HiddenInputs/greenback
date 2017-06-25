@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/mbr-218x128.jpg" type="image/x-icon">
     <title>Welcome to greenback</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/landing.css">
-
 
 
 </head>
@@ -32,12 +33,18 @@
                 </div>
                 <div class="mbr-table-cell">
 
-                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                    <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse"
+                            data-target="#exCollapsingNavbar">
                         <div class="hamburger-icon"></div>
                     </button>
 
-                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item"><a class="nav-link link" href="#"><br><br></a></li></ul>
-                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                    <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm"
+                        id="exCollapsingNavbar">
+                        <li class="nav-item"><a class="nav-link link" href="{{ path('fos_user_security_login') }}">SIGN IN</a></li>
+                        <li class="nav-item"><a class="nav-link link" href="{{ path('fos_user_registration_register') }}">SIGN UP</a></li>
+                    </ul>
+                    <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse"
+                            data-target="#exCollapsingNavbar">
                         <div class="close-icon"></div>
                     </button>
 
@@ -49,8 +56,9 @@
 
 </section>
 
-<section class="engine"><a rel="external" href="https:#">#</a></section><section class="mbr-section mbr-section-hero mbr-section-full mbr-after-navbar" id="header5-3" style="background-image: url(images/mbr-3-2000x1333.jpg);">
-
+<section class="engine"><a rel="external" href="https:#">#</a></section>
+<section class="mbr-section mbr-section-hero mbr-section-full mbr-after-navbar" id="header5-3"
+         style="background-image: url(images/mbr-3-2000x1333.jpg);">
 
 
     <div class="mbr-table-cell">
@@ -59,26 +67,29 @@
             <div class="row">
                 <div class="mbr-section col-md-10">
 
-                    <h1 class="mbr-section-title display-1"><span style="font-weight: normal;">It’s all coming </span><br><span style="font-weight: normal;">together</span><br></h1>
-                    <p class="mbr-section-lead lead">When you’re on top of your money, life is good. <br>We help you effortlessly manage your finances in one place.<br></p>
-                    <div class="mbr-section-btn"><a class="btn btn-lg btn-primary" href="{{ path('fos_user_registration_register') }}">SIGN UP NOW</a></div>
+                    <h1 class="mbr-section-title display-1"><span
+                                style="font-weight: normal;">It’s all coming </span><br><span
+                                style="font-weight: normal;">together</span><br></h1>
+                    <p class="mbr-section-lead lead">When you’re on top of your money, life is good. <br>We help you
+                        effortlessly manage your finances in one place.<br></p>
+                    <div class="mbr-section-btn"><a class="btn btn-lg btn-primary"
+                                                    href="{{ path('fos_user_registration_register') }}">SIGN UP NOW</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-
 </section>
 
-<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-1" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+<footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-1"
+        style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
 
     <div class="container">
         <p class="text-xs-center">Copyright (c) 2017 Greenback.</p>
     </div>
 </footer>
-
-
 
 
 <input name="animation" type="hidden">
