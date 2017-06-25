@@ -15,7 +15,7 @@ AppBundle\Entity\Category:
 AppBundle\Entity\Payment:
   payment_{1..10}:
       user: '@user_*'
-      amount: '<numberBetween(1, 10)>'git s
+      name: <name()>
 
 AppBundle\Entity\Transactions:
   transactions_{1..10}:

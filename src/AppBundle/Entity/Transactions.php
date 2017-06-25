@@ -18,7 +18,7 @@ class Transactions
     private $quantity;
 
     /**
-     * @var \AppBundle\Entity\Payment
+     * @var Payment
      */
     private $payment;
 
@@ -60,11 +60,11 @@ class Transactions
     /**
      * Set payment
      *
-     * @param \AppBundle\Entity\Payment $payment
+     * @param Payment $payment
      *
      * @return Transactions
      */
-    public function setPayment(\AppBundle\Entity\Payment $payment = null)
+    public function setPayment(Payment $payment = null)
     {
         $this->payment = $payment;
 
@@ -74,7 +74,7 @@ class Transactions
     /**
      * Get payment
      *
-     * @return \AppBundle\Entity\Payment
+     * @return Payment
      */
     public function getPayment()
     {

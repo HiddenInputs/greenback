@@ -23,7 +23,7 @@ class User extends BaseUser
      */
     protected $currency;
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $categories;
 
@@ -79,7 +79,7 @@ class User extends BaseUser
     /**
      * Add category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return User
      */
@@ -93,7 +93,7 @@ class User extends BaseUser
     /**
      * Remove category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param Category $category
      */
     public function removeCategory(\AppBundle\Entity\Category $category)
     {
@@ -103,7 +103,7 @@ class User extends BaseUser
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getCategories()
     {

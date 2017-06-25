@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Payment
@@ -13,16 +15,17 @@ class Payment
     private $id;
 
     /**
-     * @var float
+     * @var string
      */
-    private $amount;
+    private $name;
+
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $transactions;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      */
     private $user;
 
@@ -31,7 +34,7 @@ class Payment
      */
     public function __construct()
     {
-        $this->transactions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->transactions = new ArrayCollection();
     }
 
     /**
@@ -45,37 +48,28 @@ class Payment
     }
 
     /**
-     * Set amount
-     *
-     * @param float $amount
-     *
-     * @return Payment
+     * @return string
      */
-    public function setAmount($amount)
+    public function getName()
     {
-        $this->amount = $amount;
-
-        return $this;
+        return $this->name;
     }
 
     /**
-     * Get amount
-     *
-     * @return float
+     * @param string $name
      */
-    public function getAmount()
+    public function setName(string $name)
     {
-        return $this->amount;
+        $this->name = $name;
     }
-
     /**
      * Add transaction
      *
-     * @param \AppBundle\Entity\Transactions $transaction
+     * @param Transactions $transaction
      *
      * @return Payment
      */
-    public function addTransaction(\AppBundle\Entity\Transactions $transaction)
+    public function addTransaction(Transactions $transaction)
     {
         $this->transactions[] = $transaction;
 
@@ -85,9 +79,9 @@ class Payment
     /**
      * Remove transaction
      *
-     * @param \AppBundle\Entity\Transactions $transaction
+     * @param Transactions $transaction
      */
-    public function removeTransaction(\AppBundle\Entity\Transactions $transaction)
+    public function removeTransaction(Transactions $transaction)
     {
         $this->transactions->removeElement($transaction);
     }
@@ -95,7 +89,7 @@ class Payment
     /**
      * Get transactions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getTransactions()
     {
@@ -105,11 +99,11 @@ class Payment
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return Payment
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -119,7 +113,7 @@ class Payment
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {

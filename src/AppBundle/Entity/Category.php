@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 use AppBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Category
  */
@@ -17,12 +20,12 @@ class Category
      */
     private $name;
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Collection
      */
     private $payments;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      */
     private $user;
 
@@ -31,7 +34,7 @@ class Category
      */
     public function __construct()
     {
-        $this->payments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
 
     /**
@@ -75,7 +78,7 @@ class Category
      *
      * @return Category
      */
-    public function addPayment(\AppBundle\Entity\Payment $payment)
+    public function addPayment(Payment $payment)
     {
         $this->payments[] = $payment;
 
@@ -85,9 +88,9 @@ class Category
     /**
      * Remove payment
      *
-     * @param \AppBundle\Entity\Payment $payment
+     * @param Payment $payment
      */
-    public function removePayment(\AppBundle\Entity\Payment $payment)
+    public function removePayment(Payment $payment)
     {
         $this->payments->removeElement($payment);
     }
@@ -95,7 +98,7 @@ class Category
     /**
      * Get payments
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPayments()
     {
@@ -105,7 +108,7 @@ class Category
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return Category
      */
@@ -119,7 +122,7 @@ class Category
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {

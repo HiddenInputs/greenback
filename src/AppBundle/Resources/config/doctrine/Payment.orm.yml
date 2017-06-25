@@ -9,8 +9,8 @@ AppBundle\Entity\Payment:
             generator:
                 strategy: AUTO
     fields:
-        amount:
-            type: float
+        name:
+            type: string
     oneToMany:
         transactions:
             targetEntity: AppBundle\Entity\Transactions
