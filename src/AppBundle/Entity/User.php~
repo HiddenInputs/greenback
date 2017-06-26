@@ -18,8 +18,4 @@ class User extends BaseUser
      */
     protected $country;
 
-    /*
-     * @var string
-     */
-    protected $currency;
 }

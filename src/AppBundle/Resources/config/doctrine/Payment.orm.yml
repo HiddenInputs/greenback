@@ -11,22 +11,19 @@ AppBundle\Entity\Payment:
     fields:
         name:
             type: string
-    oneToMany:
-        transactions:
-            targetEntity: AppBundle\Entity\Transactions
-            mappedBy: payment
+            length: 255
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
             inversedBy: payments
             joinColumn:
-               name: user_id
-               referencedColumnName: id
-    manyToOne:
-        category:
-            targetEntity: AppBundle\Entity\Category
-            inversedBy: payments
+                name: user_id
+                referencedColumnName: id
+    oneToOne:
+        transaction:
+            targetEntity: AppBundle\Entity\Transaction
+            inversedBy: payment
             joinColumn:
-                name: category_id
+                name: transaction_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }

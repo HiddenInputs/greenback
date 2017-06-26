@@ -18,10 +18,11 @@ class User extends BaseUser
      */
     protected $country;
 
-    /*
+    /**
      * @var string
      */
-    protected $currency;
+    private $currency;
+
     /**
      * @var Collection
      */
@@ -83,7 +84,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function addCategory(\AppBundle\Entity\Category $category)
+    public function addCategory(Category $category)
     {
         $this->categories[] = $category;
 
@@ -95,7 +96,7 @@ class User extends BaseUser
      *
      * @param Category $category
      */
-    public function removeCategory(\AppBundle\Entity\Category $category)
+    public function removeCategory(Category $category)
     {
         $this->categories->removeElement($category);
     }

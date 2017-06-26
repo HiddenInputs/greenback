@@ -11,16 +11,17 @@ AppBundle\Entity\Category:
     fields:
         name:
             type: string
-            length: '100'
+            length: 255
+            unique: true
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
             inversedBy: categories
             joinColumn:
-                name: user_id
-                referencedColumnName: id
+               name: user_id
+               referencedColumnName: id
     oneToMany:
-        payments:
-            targetEntity: AppBundle\Entity\Payment
+        transactions:
+            targetEntity: AppBundle\Entity\Transaction
             mappedBy: category
     lifecycleCallbacks: {  }

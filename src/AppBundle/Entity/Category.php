@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Entity;
-use AppBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -19,28 +18,12 @@ class Category
      * @var string
      */
     private $name;
-    /**
-     * @var Collection
-     */
-    private $payments;
 
-    /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->payments = new ArrayCollection();
-    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -70,39 +53,56 @@ class Category
     {
         return $this->name;
     }
+    /**
+     * @var Collection
+     */
+    private $transactions;
 
     /**
-     * Add payment
+     * @var User
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->transactions = new ArrayCollection();
+    }
+
+    /**
+     * Add transaction
      *
-     * @param \AppBundle\Entity\Payment $payment
+     * @param Transaction $transaction
      *
      * @return Category
      */
-    public function addPayment(Payment $payment)
+    public function addTransaction(Transaction $transaction)
     {
-        $this->payments[] = $payment;
+        $this->transactions[] = $transaction;
 
         return $this;
     }
 
     /**
-     * Remove payment
+     * Remove transaction
      *
-     * @param Payment $payment
+     * @param Transaction $transaction
      */
-    public function removePayment(Payment $payment)
+    public function removeTransaction(Transaction $transaction)
     {
-        $this->payments->removeElement($payment);
+        $this->transactions->removeElement($transaction);
     }
 
     /**
-     * Get payments
+     * Get transactions
      *
      * @return Collection
      */
-    public function getPayments()
+    public function getTransactions()
     {
-        return $this->payments;
+        return $this->transactions;
     }
 
     /**
@@ -112,7 +112,7 @@ class Category
      *
      * @return Category
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 

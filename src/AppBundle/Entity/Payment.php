@@ -1,8 +1,6 @@
 <?php
 
 namespace AppBundle\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Payment
@@ -19,28 +17,11 @@ class Payment
      */
     private $name;
 
-    /**
-     * @var Collection
-     */
-    private $transactions;
-
-    /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->transactions = new ArrayCollection();
-    }
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -48,52 +29,61 @@ class Payment
     }
 
     /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Payment
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
      * @return string
      */
     public function getName()
     {
         return $this->name;
     }
+    /**
+     * @var Transaction
+     */
+    private $transaction;
 
     /**
-     * @param string $name
+     * @var User
      */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
+    private $user;
+
+
     /**
-     * Add transaction
+     * Set transaction
      *
-     * @param Transactions $transaction
+     * @param Transaction $transaction
      *
      * @return Payment
      */
-    public function addTransaction(Transactions $transaction)
+    public function setTransaction(Transaction $transaction = null)
     {
-        $this->transactions[] = $transaction;
+        $this->transaction = $transaction;
 
         return $this;
     }
 
     /**
-     * Remove transaction
+     * Get transaction
      *
-     * @param Transactions $transaction
+     * @return Transaction
      */
-    public function removeTransaction(Transactions $transaction)
+    public function getTransaction()
     {
-        $this->transactions->removeElement($transaction);
-    }
-
-    /**
-     * Get transactions
-     *
-     * @return Collection
-     */
-    public function getTransactions()
-    {
-        return $this->transactions;
+        return $this->transaction;
     }
 
     /**

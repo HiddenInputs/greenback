@@ -18,11 +18,11 @@ AppBundle\Entity\User:
             targetEntity: AppBundle\Entity\Category
             mappedBy: user
     oneToMany:
-        payments:
-            targetEntity: AppBundle\Entity\Payment
+        transactions:
+            targetEntity: AppBundle\Entity\Transaction
             mappedBy: user
     oneToMany:
-        transactions:
-            targetEntity: AppBundle\Entity\Transactions
+        payments:
+            targetEntity: AppBundle\Entity\Payment
             mappedBy: user
     lifecycleCallbacks: {  }
