@@ -1,0 +1,106 @@
+{% extends 'main.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        <div class="panel panel-default main-content">
+            <div class="panel-body">
+                <canvas id="chart" height="75"></canvas>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="panel panel-default main-content">
+            <div class="panel-body">
+                <canvas id="bar" height="150"></canvas>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default main-content">
+            <div class="panel-body">
+                <canvas id="pie" height="150"></canvas>
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const ctx = document.getElementById("chart");
+            const ctxBar = document.getElementById("bar");
+            const ctxPie = document.getElementById("pie");
+
+            function lastMonth() {
+                return (new Array(30)).fill(1).map((element, index) => {
+                    let today = new Date();
+                    let newDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - index);
+                    return newDate.getDate() + '/' + newDate.getMonth() + '/' + newDate.getFullYear();
+                }).reverse();
+            }
+
+            const borderColor = [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ];
+
+            const backgroundColor = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ];
+
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: lastMonth(),
+                    datasets: [{
+                        label: 'Transactions last month',
+                        data: [12, 19, 3, 5, 2, 3, 12, 33, 44, 5, 52, 5, 12, 23, 2],
+                        backgroundColor,
+                        borderColor,
+                        borderWidth: 1
+                    }]
+                }
+            });
+
+            const myBarChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Card', 'Cash', 'Paypal', 'Skrill'],
+                    datasets: [{
+                        label: 'Transactions by payment type',
+                        data: [12, 19, 3, 5],
+                        backgroundColor,
+                        borderColor,
+                        borderWidth: 1
+                    }]
+                }
+            });
+
+            const myPieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: ['Food', 'Games', 'Bills'],
+                    datasets: [{
+                        label: 'Transactions by category',
+                        data: [19, 13, 5],
+                        backgroundColor,
+                        borderColor,
+                        borderWidth: 1
+                    }]
+                }
+            });
+        }
+    </script>
+{% endblock %}
