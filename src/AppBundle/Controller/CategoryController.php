@@ -29,7 +29,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute('homepage_index');
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('category/index.html.twig', [
            'categoryForm' => $form->createView()
         ]);
     }

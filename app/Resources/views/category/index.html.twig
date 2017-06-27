@@ -1,0 +1,50 @@
+{% extends 'main.html.twig' %}
+
+{% block body %}
+    <div class="col-md-12">
+        <div class="panel panel-default main-content">
+            <div class="panel-body">
+                <h3>Create new category</h3>
+                {{ form_start(categoryForm) }}
+                <div class="form-group">
+                    {{ form_row(categoryForm.name,{'attr': {'class' :'form-control'}}) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save Category</button>
+                {{ form_end(categoryForm) }}
+
+                <table class="table categories-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category name</th>
+                        <th>Total transactions</th>
+                        <th>Largest transaction</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Games</td>
+                        <td>334 PLN</td>
+                        <td>220 PLN</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Food</td>
+                        <td>4345 PLN</td>
+                        <td>312 PLN</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Bills</td>
+                        <td>9899 PLN</td>
+                        <td>880 PLN</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="panel-footer"></div>
+        </div>
+    </div>
+{% endblock %}
