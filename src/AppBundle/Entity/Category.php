@@ -19,6 +19,29 @@ class Category
      */
     private $name;
 
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * @var \DateTime $createdAt
+     */
+    private $createdAt;
+
+    /**
+     * @var Collection
+     */
+    private $transactions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->transactions = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -53,22 +76,45 @@ class Category
     {
         return $this->name;
     }
-    /**
-     * @var Collection
-     */
-    private $transactions;
 
     /**
-     * @var User
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Category
      */
-    private $user;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
+    public function setUser(User $user = null)
     {
-        $this->transactions = new ArrayCollection();
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -103,29 +149,5 @@ class Category
     public function getTransactions()
     {
         return $this->transactions;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Category
-     */
-    public function setUser(User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }

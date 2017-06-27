@@ -17,11 +17,9 @@ AppBundle\Entity\User:
         categories:
             targetEntity: AppBundle\Entity\Category
             mappedBy: user
-    oneToMany:
         transactions:
             targetEntity: AppBundle\Entity\Transaction
             mappedBy: user
-    oneToMany:
         payments:
             targetEntity: AppBundle\Entity\Payment
             mappedBy: user

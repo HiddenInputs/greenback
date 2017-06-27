@@ -17,7 +17,20 @@ class Payment
      */
     private $name;
 
+    /**
+     * @var Transaction
+     */
+    private $transaction;
 
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * @var \DateTime $createdAt
+     */
+    private $createdAt;
     /**
      * Get id
      *
@@ -51,16 +64,6 @@ class Payment
     {
         return $this->name;
     }
-    /**
-     * @var Transaction
-     */
-    private $transaction;
-
-    /**
-     * @var User
-     */
-    private $user;
-
 
     /**
      * Set transaction
@@ -108,5 +111,21 @@ class Payment
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 }

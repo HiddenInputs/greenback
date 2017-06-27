@@ -2,14 +2,34 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" />
+        {% block title %}Welcome!{% endblock %}
+        {% block stylesheets %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" />
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="shortcut icon" href="images/mbr-218x128.jpg" type="image/x-icon">
+            <title>Welcome to greenback</title>
+            <link rel="stylesheet"
+                  href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+            <link rel="stylesheet"
+                  href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/landing.css">
+        {% endblock %}
     </head>
     <body>
     <div class="container">
-        {% block body %}{% endblock %}
+        {% for msg in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+        {% block body %}
+
+        {% endblock %}
     </div>
         {% block javascripts %}{% endblock %}
         <script src="{{ asset('js/app.js') }}"></script>

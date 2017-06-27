@@ -1,0 +1,3 @@
+category_new:
+    path: /category/new
+    defaults: { _controller: AppBundle:Category:new }

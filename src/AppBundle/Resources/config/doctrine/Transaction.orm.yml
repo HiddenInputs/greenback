@@ -13,6 +13,8 @@ AppBundle\Entity\Transaction:
             type: float
         comment:
             type: text
+        createdAt:
+            type: datetime
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User
@@ -20,7 +22,6 @@ AppBundle\Entity\Transaction:
             joinColumn:
                 name: user_id
                 referencedColumnName: id
-    manyToOne:
         category:
             targetEntity: AppBundle\Entity\Category
             inversedBy: transactions

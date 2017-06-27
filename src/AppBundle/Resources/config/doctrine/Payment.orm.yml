@@ -12,6 +12,8 @@ AppBundle\Entity\Payment:
         name:
             type: string
             length: 255
+        createdAt:
+            type: datetime
     manyToOne:
         user:
             targetEntity: AppBundle\Entity\User

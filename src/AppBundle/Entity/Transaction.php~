@@ -13,6 +13,11 @@ class Transaction
     private $id;
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * @var float
      */
     private $amount;
@@ -22,7 +27,20 @@ class Transaction
      */
     private $comment;
 
+    /**
+     * @var \DateTime $createdAt
+     */
+    private $createdAt;
 
+    /**
+     * @var Payment
+     */
+    private $payment;
+
+    /**
+     * @var Category
+     */
+    private $category;
     /**
      * Get id
      *
@@ -31,6 +49,30 @@ class Transaction
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Transaction
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
@@ -80,5 +122,60 @@ class Transaction
     {
         return $this->comment;
     }
-}
 
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * Set payment
+     *
+     * @param Payment $payment
+     *
+     * @return Transaction
+     */
+    public function setPayment(Payment $payment = null)
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Get payment
+     *
+     * @return Payment
+     */
+    public function getPayment()
+    {
+        return $this->payment;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+    }
+}

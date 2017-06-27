@@ -1,5 +1,8 @@
 app_homepage:
-    resource: routes/homepage_routing.yml
+    resource: routes/main_routing.yml
+
+app_category:
+    resource: routes/category_routing.yml
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

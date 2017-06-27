@@ -13,6 +13,11 @@ class Transaction
     private $id;
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * @var float
      */
     private $amount;
@@ -22,7 +27,20 @@ class Transaction
      */
     private $comment;
 
+    /**
+     * @var \DateTime $createdAt
+     */
+    private $createdAt;
 
+    /**
+     * @var Payment
+     */
+    private $payment;
+
+    /**
+     * @var Category
+     */
+    private $category;
     /**
      * Get id
      *
@@ -31,6 +49,30 @@ class Transaction
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Transaction
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
@@ -80,16 +122,22 @@ class Transaction
     {
         return $this->comment;
     }
-    /**
-     * @var Payment
-     */
-    private $payment;
 
     /**
-     * @var User
+     * @return \DateTime
      */
-    private $user;
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
 
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
 
     /**
      * Set payment
@@ -116,26 +164,18 @@ class Transaction
     }
 
     /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Transaction
+     * @return Category
      */
-    public function setUser(User $user = null)
+    public function getCategory(): Category
     {
-        $this->user = $user;
-
-        return $this;
+        return $this->category;
     }
 
     /**
-     * Get user
-     *
-     * @return User
+     * @param Category $category
      */
-    public function getUser()
+    public function setCategory(Category $category)
     {
-        return $this->user;
+        $this->category = $category;
     }
 }

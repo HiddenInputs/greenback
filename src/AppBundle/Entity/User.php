@@ -110,4 +110,82 @@ class User extends BaseUser
     {
         return $this->categories;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $transactions;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $payments;
+
+
+    /**
+     * Add transaction
+     *
+     * @param \AppBundle\Entity\Transaction $transaction
+     *
+     * @return User
+     */
+    public function addTransaction(\AppBundle\Entity\Transaction $transaction)
+    {
+        $this->transactions[] = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove transaction
+     *
+     * @param \AppBundle\Entity\Transaction $transaction
+     */
+    public function removeTransaction(\AppBundle\Entity\Transaction $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+
+    /**
+     * Add payment
+     *
+     * @param \AppBundle\Entity\Payment $payment
+     *
+     * @return User
+     */
+    public function addPayment(\AppBundle\Entity\Payment $payment)
+    {
+        $this->payments[] = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Remove payment
+     *
+     * @param \AppBundle\Entity\Payment $payment
+     */
+    public function removePayment(\AppBundle\Entity\Payment $payment)
+    {
+        $this->payments->removeElement($payment);
+    }
+
+    /**
+     * Get payments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPayments()
+    {
+        return $this->payments;
+    }
 }
