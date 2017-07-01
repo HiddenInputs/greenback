@@ -5,7 +5,10 @@ app_category:
     resource: routes/category_routing.yml
 
 app_main:
-    resource: routes/main_routing.yml 
+    resource: routes/main_routing.yml
+
+app_transaction:
+    resource: routes/transaction_routing.yml
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

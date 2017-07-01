@@ -24,8 +24,5 @@ AppBundle\Entity\Payment:
     oneToOne:
         transaction:
             targetEntity: AppBundle\Entity\Transaction
-            inversedBy: payment
-            joinColumn:
-                name: transaction_id
-                referencedColumnName: id
+            mappedBy: payment
     lifecycleCallbacks: {  }

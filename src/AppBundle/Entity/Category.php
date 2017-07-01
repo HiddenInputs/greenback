@@ -39,7 +39,6 @@ class Category
      */
     public function __construct()
     {
-        $this->transactions = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
 
@@ -129,6 +128,14 @@ class Category
         $this->transactions[] = $transaction;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**

@@ -41,6 +41,12 @@ class Transaction
      * @var Category
      */
     private $category;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
     /**
      * Get id
      *
@@ -164,18 +170,26 @@ class Transaction
     }
 
     /**
-     * @return Category
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Transaction
      */
-    public function getCategory(): Category
+    public function setCategory(Category $category = null)
     {
-        return $this->category;
+        $this->category = $category;
+
+        return $this;
     }
 
     /**
-     * @param Category $category
+     * Get category
+     *
+     * @return Category
      */
-    public function setCategory(Category $category)
+    public function getCategory()
     {
-        $this->category = $category;
+        return $this->category;
     }
 }

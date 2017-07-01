@@ -37,10 +37,10 @@ class Transaction
      */
     private $payment;
 
-    /**
-     * @var Category
-     */
-    private $category;
+//    /**
+//     * @var Category
+//     */
+//    private $category;
     /**
      * Get id
      *
@@ -163,19 +163,19 @@ class Transaction
         return $this->payment;
     }
 
-    /**
-     * @return Category
-     */
-    public function getCategory(): Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     */
-    public function setCategory(Category $category)
-    {
-        $this->category = $category;
-    }
+//    /**
+//     * @return Category
+//     */
+//    public function getCategory(): Category
+//    {
+//        return $this->category;
+//    }
+//
+//    /**
+//     * @param Category $category
+//     */
+//    public function setCategory(Category $category = null)
+//    {
+//        $this->category = $category;
+//    }
 }

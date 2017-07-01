@@ -29,17 +29,17 @@ class Category
      */
     private $createdAt;
 
-    /**
-     * @var Collection
-     */
-    private $transactions;
+//    /**
+//     * @var Collection
+//     */
+//    private $transactions;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->transactions = new ArrayCollection();
+//        $this->transactions = new ArrayCollection();
         $this->createdAt = new \DateTime();
     }
 
@@ -131,23 +131,31 @@ class Category
         return $this;
     }
 
-    /**
-     * Remove transaction
-     *
-     * @param Transaction $transaction
-     */
-    public function removeTransaction(Transaction $transaction)
-    {
-        $this->transactions->removeElement($transaction);
-    }
+//    /**
+//     * Remove transaction
+//     *
+//     * @param Transaction $transaction
+//     */
+//    public function removeTransaction(Transaction $transaction)
+//    {
+//        $this->transactions->removeElement($transaction);
+//    }
+//
+//    /**
+//     * Get transactions
+//     *
+//     * @return Collection
+//     */
+//    public function getTransactions()
+//    {
+//        return $this->transactions;
+//    }
 
     /**
-     * Get transactions
-     *
-     * @return Collection
+     * @return string
      */
-    public function getTransactions()
+    public function __toString()
     {
-        return $this->transactions;
+        return $this->name;
     }
 }
