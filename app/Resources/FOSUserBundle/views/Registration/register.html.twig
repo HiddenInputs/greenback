@@ -1,53 +1,56 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class='col-md-3'></div>
-        <div class="col-md-6">
-            <div class="login-box well">
-                <form action="/register/" method="post">
-                    <legend>Sign Up</legend>
-                    <div class="form-group">
-                        <label for="fos_user_registration_form_email">E-mail</label>
-                        <input value='' id="fos_user_registration_form_email" name="fos_user_registration_form[email]" placeholder="E-mail" type="text"
-                               class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="fos_user_registration_form_username">Username</label>
-                        <input value='' id="fos_user_registration_form_username" name="fos_user_registration_form[username]" placeholder="Username" type="text"
-                               class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="fos_user_registration_form_plainPassword_first">Password</label>
-                        <input id="fos_user_registration_form_plainPassword_first" name="fos_user_registration_form[plainPassword][first]" value='' placeholder="Password" type="password" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="fos_user_registration_form_plainPassword_second">Repeat password</label>
-                        <input id="fos_user_registration_form_plainPassword_second" name="fos_user_registration_form[plainPassword][second]" value='' placeholder="Repeat password" type="password" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <select name="fos_user_registration_form[country]" id="fos_user_registration_form_country"  class="form-control">
-                            {%  for country in form.children.country.vars.choices %}
-                                <option value="{{ country.value }}">{{ country.label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="fos_user_registration_form[currency]" id="fos_user_registration_form_currency"  class="form-control">
-                            {%  for currency in form.children.currency.vars.choices %}
-                                <option value="{{ currency.value }}">{{ currency.label }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md"
-                               value="Register"/>
-                    </div>
-                    {{ form_row(form._token) }}
-                </form>
+    <div class="ui segment login-form">
+        <div class="ui header">Sign up</div>
+        <form class="ui form" action="/register/" method="post">
+            <div class="field">
+                <label>E-mail</label>
+                <input type="email" id="fos_user_registration_form_email" name="fos_user_registration_form[email]"
+                       placeholder="E-mail">
             </div>
-        </div>
-        <div class='col-md-3'></div>
-
+            <div class="field">
+                <label>Username</label>
+                <input type="text" id="fos_user_registration_form_username" name="fos_user_registration_form[username]"
+                       placeholder="Username">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="fos_user_registration_form_plainPassword_first"
+                       name="fos_user_registration_form[plainPassword][first]" placeholder="Password">
+            </div>
+            <div class="field">
+                <label>Repeat password</label>
+                <input type="password" id="fos_user_registration_form_plainPassword_second"
+                       name="fos_user_registration_form[plainPassword][second]" placeholder="Repeat password">
+            </div>
+            <div class="field">
+                <label>Country</label>
+                <div name="fos_user_registration_form[country]" id="fos_user_registration_form_country"
+                     class="ui fluid search selection dropdown">
+                    <input type="hidden" name="country" value="af">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Select Country</div>
+                    <div class="menu">
+                        {% for country in form.children.country.vars.choices %}
+                            <div class="item" value="{{ country.value }}" data-value="{{ country.attr.iso }}"><i
+                                        class="{{ country.attr.iso }} flag"></i>{{ country.label }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <select name="fos_user_registration_form[currency]" id="fos_user_registration_form_currency"
+                        class="ui fluid search selection dropdown">
+                    {% for currency in form.children.currency.vars.choices %}
+                        <option value="{{ currency.value }}">{{ currency.label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <button type="submit" class="ui button primary">Sign up</button>
+            </div>
+            {{ form_row(form._token) }}
+        </form>
     </div>
 {% endblock %}

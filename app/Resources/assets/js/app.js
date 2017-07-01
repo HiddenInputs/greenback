@@ -18,3 +18,8 @@ const app = new Vue({
     $('[data-nav]').removeClass('active');
     $(`[data-nav="${location}"]`).addClass('active');
 })();
+
+$(document).ready(function() {
+    $('#fos_user_registration_form_country').dropdown();
+    $('#fos_user_registration_form_currency').dropdown();
+});

@@ -16,13 +16,16 @@ class CountryGenerator
      */
     public function getCountryNames(): array
     {
-        $countryNameList = [];
+        $countryNameList = $countryISOList = [];
 
-        foreach ($this->getCountryList() as $country) {
+        foreach ($this->getCountryList() as $countryIndex => $country) {
             $countryNameList[] = $country['name']['common'];
+            $countryISOList[] = [
+                'iso' => $countryIndex
+            ];
         }
 
-        return $countryNameList;
+        return ['countries' => $countryNameList, 'iso' => $countryISOList];
     }
 
     /**
@@ -38,6 +41,7 @@ class CountryGenerator
 
         return $countryCurrencyList;
     }
+
     /*
      * @return array
      */
@@ -50,7 +54,7 @@ class CountryGenerator
         $northAmerica = Loader::where('geo.continent', ['NA' => 'North America']);
         $europe = Loader::where('geo.continent', ['EU' => 'Europe']);
 
-        return $this->countryData = array_merge($europe,$northAmerica);
+        return $this->countryData = array_merge($europe, $northAmerica);
     }
 
 }

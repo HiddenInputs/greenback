@@ -29,7 +29,8 @@ class RegistrationType extends AbstractType
     {
         $builder->add('country', ChoiceType::class, [
             'placeholder' => 'Select your country',
-            'choices' => $this->country->getCountryNames(),
+            'choices' => $this->country->getCountryNames()['countries'],
+            'choice_attr' => $this->country->getCountryNames()['iso'],
             'choice_label' => function($value, $key, $index) {
                 return $value;
             }

@@ -1,45 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="row">
-        <div class='col-md-3'></div>
-        <div class="col-md-6">
-            <div class="login-box well">
-                <form action="/login_check" method="post">
-                    <legend>Sign In</legend>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input value='' id="username" name="_username" placeholder="E-mail" type="text"
-                               class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" value='' name="_password" placeholder="Password" type="password" class="form-control"/>
-                    </div>
-                    <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                <input id="remember_me" type="checkbox" name="_remember_me" value="1"> Remember me
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md"
-                               value="Login" id="_submit" name="_submit"/>
-                    </div>
-                    <span class='text-center'><a href="/resetting/request"
-                                                 class="text-sm">Forgot Password?</a></span>
-                    <div class="form-group">
-                        <p class="text-center m-t-xs text-sm">Do not have an account?</p>
-                        <a href="/register/" class="btn btn-default btn-block m-t-md">Create an account</a>
-                    </div>
-                    {% if csrf_token %}
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-                    {% endif %}
-                </form>
-
+    <div class="ui segment login-form">
+        <div class="ui header">Sign in</div>
+        <form class="ui form" action="/login_check" method="post">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" id="username" name="_username" placeholder="Username">
             </div>
-        </div>
-        <div class='col-md-3'></div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="password" value='' name="_password" placeholder="Password">
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="1" tabindex="0" class="hidden">
+                    <label>Remember me</label>
+                </div>
+            </div>
+            <button class="ui button primary" type="submit" id="_submit" name="_submit">Submit</button>
+            <div class="ui hidden divider"></div>
+            <div class='text-center'><a href="/resetting/request"
+                                        class="text-sm">Forgot Password?</a></div>
+            <p class="text-center m-t-xs text-sm">Do not have an account?</p>
+            <button href="/register/" class="ui button">Create an account</button>
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            {% endif %}
+        </form>
     </div>
 {% endblock %}

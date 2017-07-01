@@ -1,3 +1,7 @@
+html, body {
+    height: auto !important;
+}
+
 body {
     background: url('../images/natural_paper.png');
 }
@@ -15,4 +19,8 @@ body {
 .main-grid {
     display: flex;
     justify-content: space-around;
+}
+
+.login-form, .registration-form {
+    margin-top: 50px !important;
 }
