@@ -1,5 +1,11 @@
-<ul class="nav nav-pills nav-stacked">
-    <li role="presentation" class="active"><a href="/home">Home</a></li>
-    <li role="presentation"><a href="/category">Categories</a></li>
-    <li role="presentation"><a href="/transactions">Transactions</a></li>
-</ul>
+<div class="ui vertical pointing menu">
+    <a href="{{ path('homepage_main') }}" class="active item">
+        Home
+    </a>
+    <a href="{{ path('category_new') }}" class="item">
+        Categories
+    </a>
+    <a href="{{ path('transaction_new') }}" class="item">
+        Transactions
+    </a>
+</div>
