@@ -12,3 +12,9 @@ window.$ = window.jQuery = require('jquery');
 const app = new Vue({
     el: '#app',
 });
+
+(function makeMenuActive() {
+    const location = window.location.pathname.replace(/\//g, '');
+    $('[data-nav]').removeClass('active');
+    $(`[data-nav="${location}"]`).addClass('active');
+})();
