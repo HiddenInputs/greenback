@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,19 +25,24 @@ class TransactionType extends AbstractType
                 'class' => Category::class,
                 'query_builder' => function(CategoryRepository $categoryRepository) {
                     return $categoryRepository->findAllCategoriesOrderedByName();
-                }
+                },
+                'label' => false
             ])
             ->add('amount', NumberType::class, [
-                'scale' => 8
+                'scale' => 8,
+                'label' => false
             ])
             ->add('payment', EntityType::class, [
                 'placeholder' => 'Choose payment method',
                 'class' => Payment::class,
                 'query_builder' => function(PaymentRepository $paymentRepository) {
                     return $paymentRepository->findAllPaymentMethodsOrderedByName();
-                }
+                },
+                'label' => false
             ])
-            ->add('comment', TextareaType::class);
+            ->add('comment', TextType::class, [
+                'label' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,8 +1,18 @@
+body {
+    background: url('../images/natural_paper.png');
+}
+
 .main-content {
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
 
 .categories-list {
-    margin-top: 50px;
     font-size: 14px;
+}
+
+.main-grid {
+    display: flex;
+    justify-content: space-around;
 }

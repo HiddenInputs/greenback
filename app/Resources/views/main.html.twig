@@ -5,19 +5,23 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
 </head>
 <body>
-<div class="container-fluid">
-    <div class="col-md-2">
-        {% include 'partials/nav.html.twig' %}
-    </div>
-    <div class="col-md-10">
-        {% block body %}{% endblock %}
+<div class="ui container fluid">
+    <div class="ui two column grid main-grid">
+        <div class="three wide column" id="nav-wrapper">
+            {% include 'partials/nav.html.twig' %}
+        </div>
+        <div class="thirteen wide column main-content">
+            {% block body %}{% endblock %}
+        </div>
     </div>
 
 </div>
 {% block javascripts %}{% endblock %}
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="/semantic/dist/semantic.js"></script>
 </body>
 </html>

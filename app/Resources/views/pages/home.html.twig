@@ -1,33 +1,26 @@
 {% extends 'main.html.twig' %}
 
 {% block body %}
-    <div class="col-md-12">
-        <div class="panel panel-default main-content">
-            <div class="panel-body">
+    <div class="ui two column grid">
+        <div class="ui sixteen wide column">
+            <div class="ui piled segment">
                 <canvas id="chart" height="75"></canvas>
             </div>
-            <div class="panel-footer"></div>
         </div>
-    </div>
 
-
-    <div class="col-md-6">
-        <div class="panel panel-default main-content">
-            <div class="panel-body">
+        <div class="ui eight wide column">
+            <div class="ui piled segment">
                 <canvas id="bar" height="150"></canvas>
             </div>
-            <div class="panel-footer"></div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="panel panel-default main-content">
-            <div class="panel-body">
+        <div class="ui eight wide column">
+            <div class="ui piled segment">
                 <canvas id="pie" height="150"></canvas>
             </div>
-            <div class="panel-footer"></div>
         </div>
-    </div>
 
+
+    </div>
     <script>
         window.onload = function () {
             const ctx = document.getElementById("chart");

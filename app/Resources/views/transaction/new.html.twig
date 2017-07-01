@@ -1,4 +1,62 @@
-{{ form_start(transactionForm) }}
-    {{ form_widget(transactionForm) }}
-<button type="submit" class="btn btn-primary">Submit</button>
-{{ form_end(transactionForm) }}
+{% extends 'main.html.twig' %}
+
+{% block body %}
+    <div class="ui segment">
+        <h2 class="ui header">
+            <div class="content">
+                Transactions
+            </div>
+        </h2>
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+        <table class="ui compact celled table" id="categories-table">
+            <thead>
+            <tr>
+                <th>Transaction id</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Comment</th>
+                <th>Payment type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>#12</td>
+                <td>Games</td>
+                <td>9899 PLN</td>
+                <td>Bills</td>
+                <td>Credit Card</td>
+            </tr>
+            </tbody>
+            <tfoot class="full-width">
+            <tr>
+                <th colspan="5">
+                    <form class="ui form" name="category" method="post">
+                        {{ form_start(transactionForm) }}
+                        <div class="fields">
+                            <div class="field">
+                                {{ form_widget(transactionForm.category, {'attr': {'class': 'field'}}) }}
+                            </div>
+                            <div class="field">
+                                {{ form_widget(transactionForm.amount, {'attr': {'class': 'field', 'placeholder': 'Amount'}}) }}
+                            </div>
+                            <div class="field">
+                                {{ form_widget(transactionForm.payment, {'attr': {'class': 'field'}}) }}
+                            </div>
+                            <div class="field">
+                                {{ form_widget(transactionForm.comment, {'attr': {'class': 'field', 'placeholder': 'Comment'}}) }}
+                            </div>
+                            <div class="field">
+                                <button type="submit" class="ui right floated primary labeled icon button">
+                                    <i class="plus icon"></i> Add new transaction
+                                </button>
+                            </div>
+                        </div>
+                        {{ form_end(transactionForm) }}
+                    </form>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
