@@ -28,6 +28,16 @@ class User extends BaseUser
      */
     private $categories;
 
+    /**
+     * @var Collection
+     */
+    private $transactions;
+
+    /**
+     * @var Collection
+     */
+    private $payments;
+
 
     /**
      * Set country
@@ -110,25 +120,15 @@ class User extends BaseUser
     {
         return $this->categories;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $transactions;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $payments;
-
 
     /**
      * Add transaction
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param Transaction $transaction
      *
      * @return User
      */
-    public function addTransaction(\AppBundle\Entity\Transaction $transaction)
+    public function addTransaction(Transaction $transaction)
     {
         $this->transactions[] = $transaction;
 
@@ -138,9 +138,9 @@ class User extends BaseUser
     /**
      * Remove transaction
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param Transaction $transaction
      */
-    public function removeTransaction(\AppBundle\Entity\Transaction $transaction)
+    public function removeTransaction(Transaction $transaction)
     {
         $this->transactions->removeElement($transaction);
     }
@@ -148,7 +148,7 @@ class User extends BaseUser
     /**
      * Get transactions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getTransactions()
     {
@@ -158,11 +158,11 @@ class User extends BaseUser
     /**
      * Add payment
      *
-     * @param \AppBundle\Entity\Payment $payment
+     * @param Payment $payment
      *
      * @return User
      */
-    public function addPayment(\AppBundle\Entity\Payment $payment)
+    public function addPayment(Payment $payment)
     {
         $this->payments[] = $payment;
 
@@ -172,9 +172,9 @@ class User extends BaseUser
     /**
      * Remove payment
      *
-     * @param \AppBundle\Entity\Payment $payment
+     * @param Payment $payment
      */
-    public function removePayment(\AppBundle\Entity\Payment $payment)
+    public function removePayment(Payment $payment)
     {
         $this->payments->removeElement($payment);
     }
@@ -182,7 +182,7 @@ class User extends BaseUser
     /**
      * Get payments
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getPayments()
     {

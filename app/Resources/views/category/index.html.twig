@@ -22,24 +22,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for detail in transactionDetails %}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Games</td>
-                        <td>334 PLN</td>
-                        <td>220 PLN</td>
+                        <th>{{ loop.index }}</th>
+                        <th>{{ detail.name }}</th>
+                        <th>{{ detail.totalTransactions }}</th>
+                        <th>{{ detail.theLargestTransaction }}</th>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Food</td>
-                        <td>4345 PLN</td>
-                        <td>312 PLN</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Bills</td>
-                        <td>9899 PLN</td>
-                        <td>880 PLN</td>
-                    </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
 

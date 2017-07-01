@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Payment
  */
@@ -18,23 +20,31 @@ class Payment
     private $name;
 
     /**
-     * @var Transaction
-     */
-    private $transaction;
-
-    /**
-     * @var User
-     */
-    private $user;
-
-    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
+
+    /**
+     * @var Collection
+     */
+    private $transactions;
+
+    /**
+     * @var \AppBundle\Entity\User
+     */
+    private $user;
+
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -66,27 +76,61 @@ class Payment
     }
 
     /**
-     * Set transaction
+     * Set createdAt
      *
-     * @param Transaction $transaction
+     * @param \DateTime $createdAt
      *
      * @return Payment
      */
-    public function setTransaction(Transaction $transaction = null)
+    public function setCreatedAt($createdAt)
     {
-        $this->transaction = $transaction;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get transaction
+     * Get createdAt
      *
-     * @return Transaction
+     * @return \DateTime
      */
-    public function getTransaction()
+    public function getCreatedAt()
     {
-        return $this->transaction;
+        return $this->createdAt;
+    }
+
+    /**
+     * Add transaction
+     *
+     * @param Transaction $transaction
+     *
+     * @return Payment
+     */
+    public function addTransaction(Transaction $transaction)
+    {
+        $this->transactions[] = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove transaction
+     *
+     * @param Transaction $transaction
+     */
+    public function removeTransaction(Transaction $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return Collection
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
     }
 
     /**
@@ -113,25 +157,6 @@ class Payment
         return $this->user;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * @return string
-     */
     public function __toString()
     {
         return $this->name;

@@ -20,11 +20,6 @@ class Category
     private $name;
 
     /**
-     * @var User
-     */
-    private $user;
-
-    /**
      * @var \DateTime $createdAt
      */
     private $createdAt;
@@ -33,6 +28,12 @@ class Category
      * @var Collection
      */
     private $transactions;
+
+    /**
+     * @var User
+     */
+    private $user;
+
 
     /**
      * Constructor
@@ -45,7 +46,7 @@ class Category
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -77,6 +78,64 @@ class Category
     }
 
     /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Category
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Add transaction
+     *
+     * @param Transaction $transaction
+     *
+     * @return Category
+     */
+    public function addTransaction(Transaction $transaction)
+    {
+        $this->transactions[] = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * Remove transaction
+     *
+     * @param \AppBundle\Entity\Transaction $transaction
+     */
+    public function removeTransaction(Transaction $transaction)
+    {
+        $this->transactions->removeElement($transaction);
+    }
+
+    /**
+     * Get transactions
+     *
+     * @return Collection
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+
+    /**
      * Set user
      *
      * @param User $user
@@ -100,61 +159,8 @@ class Category
         return $this->user;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * Add transaction
-     *
-     * @param Transaction $transaction
-     *
-     * @return Category
-     */
-    public function addTransaction(Transaction $transaction)
-    {
-        $this->transactions[] = $transaction;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function __toString()
     {
-        return $this->name;
-    }
-
-    /**
-     * Remove transaction
-     *
-     * @param Transaction $transaction
-     */
-    public function removeTransaction(Transaction $transaction)
-    {
-        $this->transactions->removeElement($transaction);
-    }
-
-    /**
-     * Get transactions
-     *
-     * @return Collection
-     */
-    public function getTransactions()
-    {
-        return $this->transactions;
+         return $this->name;
     }
 }

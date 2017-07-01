@@ -7,6 +7,9 @@ app_category:
 app_main:
     resource: routes/main_routing.yml
 
+app_payment:
+    resource: routes/paymnt_routing.yml
+
 app_transaction:
     resource: routes/transaction_routing.yml
 

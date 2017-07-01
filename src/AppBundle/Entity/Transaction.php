@@ -13,11 +13,6 @@ class Transaction
     private $id;
 
     /**
-     * @var User
-     */
-    private $user;
-
-    /**
      * @var float
      */
     private $amount;
@@ -33,14 +28,19 @@ class Transaction
     private $createdAt;
 
     /**
-     * @var Payment
+     * @var User
      */
-    private $payment;
+    private $user;
 
     /**
      * @var Category
      */
     private $category;
+
+    /**
+     * @var Payment
+     */
+    private $payment;
 
     public function __construct()
     {
@@ -50,35 +50,11 @@ class Transaction
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     *
-     * @return Transaction
-     */
-    public function setUser(User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -130,43 +106,51 @@ class Transaction
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $createdAt
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * Set payment
+     * Set createdAt
      *
-     * @param Payment $payment
+     * @param \DateTime $createdAt
      *
      * @return Transaction
      */
-    public function setPayment(Payment $payment = null)
+    public function setCreatedAt($createdAt)
     {
-        $this->payment = $payment;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get payment
+     * Get createdAt
      *
-     * @return Payment
+     * @return \DateTime
      */
-    public function getPayment()
+    public function getCreatedAt()
     {
-        return $this->payment;
+        return $this->createdAt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Transaction
+     */
+    public function setUser(User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
@@ -191,5 +175,29 @@ class Transaction
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set payment
+     *
+     * @param Payment $payment
+     *
+     * @return Transaction
+     */
+    public function setPayment(Payment $payment = null)
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Get payment
+     *
+     * @return Payment
+     */
+    public function getPayment()
+    {
+        return $this->payment;
     }
 }

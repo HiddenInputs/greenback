@@ -28,11 +28,10 @@ AppBundle\Entity\Transaction:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
-    oneToOne:
         payment:
             targetEntity: AppBundle\Entity\Payment
-            inversedBy: transaction
-            joinColumn:
+            inversedBy: transactions
+            joinColun:
                 name: payment_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }

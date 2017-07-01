@@ -2,11 +2,11 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\CategoryType;
+use AppBundle\Form\PaymentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class CategoryController extends Controller
+class PaymentController extends Controller
 {
     public function newAction(Request $request)
     {
@@ -14,26 +14,21 @@ class CategoryController extends Controller
             throw $this->createAccessDeniedException();
         }
 
-        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
-
-        $form = $this->createForm(CategoryType::class);
+        $form = $this->createForm(PaymentType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $category = $form->getData();
-            $category->setUser($this->getUser());
+            $payment = $form->getData();
+            $payment->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            $em->persist($payment);
             $em->flush();
-
-            $this->addFlash('success', 'New category has been created');
 
             return $this->redirectToRoute('homepage_main');
         }
 
-        return $this->render('category/index.html.twig', [
-            'categoryForm' => $form->createView(),
-            'transactionDetails' => $transaction->findAllTransactionDetailsOrderedByName()
+        return $this->render('payment/new.html.twig',[
+            'paymentForm' => $form->createView()
         ]);
     }
 }
