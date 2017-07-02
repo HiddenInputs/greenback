@@ -15,7 +15,7 @@ class TransactionRepository extends EntityRepository
         return $this->createQueryBuilder('transaction')
             ->join('transaction.category', 'category')
             ->select(
-                'category.name, SUM(transaction.amount) as totalTransactions, 
+                'category.id, category.name, SUM(transaction.amount) as totalTransactions, 
                 MAX(transaction.amount) as theLargestTransaction'
             )
             ->groupBy('category.name')

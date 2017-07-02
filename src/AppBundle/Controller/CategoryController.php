@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,26 @@ class CategoryController extends Controller
         return $this->render('category/index.html.twig', [
             'categoryForm' => $form->createView(),
             'transactionDetails' => $transaction->findAllTransactionDetailsOrderedByName()
+        ]);
+    }
+
+    public function editAction(Request $request, Category $category)
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $category = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirectToRoute('category_new');
+        }
+
+        return $this->render('category/edit.html.twig', [
+            'categoryForm' => $form->createView(),
         ]);
     }
 }

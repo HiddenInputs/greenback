@@ -1,3 +1,7 @@
 category_new:
     path: /category/
     defaults: { _controller: AppBundle:Category:new }
+
+category_edit:
+    path: /category/{id}/edit
+    defaults: { _controller: AppBundle:Category:edit }

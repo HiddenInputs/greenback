@@ -6,40 +6,13 @@
         <div class="panel panel-default main-content">
             <div class="panel-body">
                 <h3>Create new category</h3>
-                {{ form_start(categoryForm) }}
-                <div class="form-group">
-                    {{ form_row(categoryForm.name,{'attr': {'class' :'form-control'}}) }}
-                </div>
-                <button type="submit" class="btn btn-primary">Save Category</button>
-                {{ form_end(categoryForm) }}
-
-                <table class="table categories-list">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Category name</th>
-                        <th>Total transactions</th>
-                        <th>Largest transaction</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for detail in transactionDetails %}
-                    <tr>
-                        <th>{{ loop.index }}</th>
-                        <th>{{ detail.name }}</th>
-                        <th>{{ detail.totalTransactions }}</th>
-                        <th>{{ detail.theLargestTransaction }}</th>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-
+                {{ include('partials/category_form.html.twig',{
+                    'buttonText' : 'Save Category'
+                }) }}
     <div class="ui segment">
         <h2 class="ui header">
             <div class="content">
                 Categories
-
             </div>
         </h2>
         <div class="ui hidden divider"></div>
@@ -54,45 +27,24 @@
             </tr>
             </thead>
             <tbody>
+            {% for detail in transactionDetails %}
             <tr>
                 <td class="collapsing">
+                    <a href="{{ path('category_edit', {'id' : detail.id}) }}">
                     <button class="ui icon green button">
                         <i class="pencil icon"></i>
                     </button>
+                    </a>
                     <button class="ui icon red button">
                         <i class="trash icon"></i>
                     </button>
                 </td>
-                <td>Bills</td>
-                <td>9899 PLN</td>
-                <td>355 PLN</td>
+                <td>{{ detail.name }}</td>
+                <td>{{ detail.totalTransactions }}</td>
+                <td>{{ detail.theLargestTransaction }}</td>
             </tr>
-            <tr>
-                <td class="collapsing">
-                    <button class="ui icon green button">
-                        <i class="pencil icon"></i>
-                    </button>
-                    <button class="ui icon red button">
-                        <i class="trash icon"></i>
-                    </button>
-                </td>
-                <td>Food</td>
-                <td>4345 PLN</td>
-                <td>312 PLN</td>
-            </tr>
-            <tr>
-                <td class="collapsing">
-                    <button class="ui icon green button">
-                        <i class="pencil icon"></i>
-                    </button>
-                    <button class="ui icon red button">
-                        <i class="trash icon"></i>
-                    </button>
-                </td>
-                <td>Games</td>
-                <td>33554 PLN</td>
-                <td>220 PLN</td>
-            </tr>
+            {% endfor %}
+
             </tbody>
             <tfoot class="full-width">
             <tr>
