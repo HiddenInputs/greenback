@@ -5,3 +5,7 @@ category_new:
 category_edit:
     path: /category/{id}/edit
     defaults: { _controller: AppBundle:Category:edit }
+
+category_delete:
+    path: /category/{id}/delete
+    defaults: { _controller: AppBundle:Category:delete }
