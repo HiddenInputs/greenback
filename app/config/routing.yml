@@ -13,5 +13,8 @@ app_payment:
 app_transaction:
     resource: routes/transaction_routing.yml
 
+logout:
+    path: /logout
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
