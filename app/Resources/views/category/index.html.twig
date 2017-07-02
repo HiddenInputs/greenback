@@ -1,14 +1,6 @@
 {% extends 'main.html.twig' %}
 
 {% block body %}
-
-    <div class="col-md-12">
-        <div class="panel panel-default main-content">
-            <div class="panel-body">
-                <h3>Create new category</h3>
-                {{ include('partials/category_form.html.twig',{
-                    'buttonText' : 'Save Category'
-                }) }}
     <div class="ui segment">
         <h2 class="ui header">
             <div class="content">
@@ -30,7 +22,7 @@
             {% for detail in transactionDetails %}
             <tr>
                 <td class="collapsing">
-                    <a href="{{ path('category_edit', {'id' : detail.id}) }}">
+                    <a onclick="editCategory({{ detail.id }}, '{{ detail.name }}')">
                     <button class="ui icon green button">
                         <i class="pencil icon"></i>
                     </button>
@@ -39,12 +31,12 @@
                         <i class="trash icon"></i>
                     </button>
                 </td>
-                <td>{{ detail.name }}</td>
+                <td data-type="category-name" data-id="{{ detail.id }}">{{ detail.name }}</td>
                 <td>{{ detail.totalTransactions }}</td>
                 <td>{{ detail.theLargestTransaction }}</td>
             </tr>
             {% endfor %}
-
+            {{ form_widget(categoryForm._token) }}
             </tbody>
             <tfoot class="full-width">
             <tr>

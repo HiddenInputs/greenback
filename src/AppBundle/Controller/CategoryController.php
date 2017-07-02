@@ -6,6 +6,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CategoryController extends Controller
 {
@@ -29,6 +30,7 @@ class CategoryController extends Controller
 
             $this->addFlash('success', 'New category has been created');
 
+
             return $this->redirectToRoute('homepage_main');
         }
 
@@ -44,17 +46,14 @@ class CategoryController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $category = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category_new');
+            return new JsonResponse(['name' => $category->getName()]);
         }
-
-        return $this->render('category/edit.html.twig', [
-            'categoryForm' => $form->createView(),
-        ]);
     }
 }

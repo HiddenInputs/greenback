@@ -1,8 +1,3 @@
-{% if is_granted("ROLE_USER") %}
-    Welcome {{ app.user.username }}
-    <a href="{{ path('logout') }}">Logout now</a>
-{% endif %}
-
 <div class="ui vertical pointing menu">
     <a href="{{ path('homepage_main') }}" class="item" data-nav="home">
         Home
@@ -16,4 +11,10 @@
     <a href="{{ path('payment_new') }}" class="item" data-nav="payments">
         Payments
     </a>
+</div>
+<div class="ui vertical pointing menu">
+    {% if is_granted("ROLE_USER") %}
+        <a href="#" class="item">Logged in as <strong>{{ app.user.username }}</strong></a>
+        <a href="{{ path('logout') }}" class="item">Logout</a>
+    {% endif %}
 </div>
