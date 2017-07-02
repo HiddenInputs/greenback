@@ -57,4 +57,17 @@ class CategoryController extends Controller
             'categoryForm' => $form->createView(),
         ]);
     }
+
+    public function deleteAction(Category $category)
+    {
+        if (!$category) {
+            throw $this->createNotFoundException('No category found');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirectToRoute('category_new');
+    }
 }

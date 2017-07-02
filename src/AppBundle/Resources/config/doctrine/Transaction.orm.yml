@@ -28,6 +28,7 @@ AppBundle\Entity\Transaction:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+                onDelete: CASCADE
         payment:
             targetEntity: AppBundle\Entity\Payment
             inversedBy: transactions

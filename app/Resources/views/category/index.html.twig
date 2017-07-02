@@ -35,9 +35,11 @@
                         <i class="pencil icon"></i>
                     </button>
                     </a>
+                    <a href="{{ path('category_delete', {'id' : detail.id}) }}">
                     <button class="ui icon red button">
                         <i class="trash icon"></i>
                     </button>
+                    </a>
                 </td>
                 <td>{{ detail.name }}</td>
                 <td>{{ detail.totalTransactions }}</td>
