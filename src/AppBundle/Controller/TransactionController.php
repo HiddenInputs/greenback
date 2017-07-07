@@ -15,7 +15,7 @@ class TransactionController extends Controller
         }
 
         $form = $this->createForm(TransactionType::class);
-
+        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -29,7 +29,8 @@ class TransactionController extends Controller
         }
 
         return $this->render('transaction/new.html.twig',[
-           'transactionForm' => $form->createView()
+            'transactionForm' => $form->createView(),
+            'transactionList' => $transaction->findAllTransactionsOrderedByCategoryName()
         ]);
     }
 }

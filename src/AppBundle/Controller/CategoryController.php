@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
         return $this->render('category/index.html.twig', [
             'categoryForm' => $form->createView(),
-            'transactionDetails' => $transaction->findAllTransactionDetailsOrderedByName()
+            'transactionDetails' => $transaction->findAllTransactionDetailsGroupedByName()
         ]);
     }
 

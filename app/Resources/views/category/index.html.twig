@@ -38,7 +38,7 @@
                 <td>{{ detail.theLargestTransaction }}</td>
             </tr>
             {% endfor %}
-            {{ form_widget(categoryForm._token) }}
+
             </tbody>
             <tfoot class="full-width">
             <tr>
@@ -56,6 +56,7 @@
                             </button>
                         </div>
                     </div>
+                        {{ form_widget(categoryForm._token)}}
                         {{ form_end(categoryForm) }}
                     </form>
                 </th>

@@ -1,23 +1,28 @@
 AppBundle\Entity\User:
-  user_{1..10}:
+  user_{1..1}:
       username: <username()>
       email:  <email()>
       password: <password()>
-      enabled:  <boolean(75)>
+      enabled:  <boolean(100)>
       country: <country()>
       currency: <currency()>
 
 AppBundle\Entity\Category:
-  category_{1..10}:
+  category_{1..100}:
       name: <name()>
       user: '@user_*'
 
 AppBundle\Entity\Payment:
-  payment_{1..10}:
+  payment_{1..100}:
       user: '@user_*'
       name: <name()>
+      createdAt: '<dateTimeBetween("-366 days", "now")>'
 
-AppBundle\Entity\Transactions:
-  transactions_{1..10}:
+AppBundle\Entity\Transaction:
+  transactions_{1..100}:
+      user: '@user_*'
+      category: '@category_*'
       payment: '@payment_*'
-      quantity: '<numberBetween(1, 10)>'
+      amount: '<numberBetween(1, 100)>'
+      comment: '<text(20)>'
+      createdAt: '<dateTimeBetween("-366 days", "now")>'

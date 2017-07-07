@@ -6,7 +6,7 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link rel="stylesheet" type="text/css" href="/semantic/dist/semantic.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
 </head>
 <body>
@@ -21,8 +21,9 @@
     </div>
 
 </div>
-{% block javascripts %}{% endblock %}
-<script src="/semantic/dist/semantic.js"></script>
+{% block javascripts %}
 <script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('semantic/dist/semantic.js') }}"></script>
+{% endblock %}
 </body>
 </html>

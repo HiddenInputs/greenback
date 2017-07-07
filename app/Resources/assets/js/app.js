@@ -11,7 +11,7 @@ window.axios = require('axios');
 // Vue.component('statistics', require('./components/Statistics.vue'));
 // Vue.component('transactions', require('./components/Transactions.vue'));
 
-axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="_csrf_token"]').getAttribute('value');
+// axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="_csrf_token"]').getAttribute('value');
 
 (function makeMenuActive() {
     const location = window.location.pathname.replace(/\//g, '');

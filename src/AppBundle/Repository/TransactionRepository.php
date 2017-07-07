@@ -10,7 +10,7 @@ class TransactionRepository extends EntityRepository
     /**
      * @return Transaction[]
      */
-    public function findAllTransactionDetailsOrderedByName()
+    public function findAllTransactionDetailsGroupedByName()
     {
         return $this->createQueryBuilder('transaction')
             ->join('transaction.category', 'category')
@@ -19,6 +19,22 @@ class TransactionRepository extends EntityRepository
                 MAX(transaction.amount) as theLargestTransaction'
             )
             ->groupBy('category.name')
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @return Transaction[]
+     */
+    public function findAllTransactionsOrderedByCategoryName()
+    {
+        return $this->createQueryBuilder('transaction')
+            ->join('transaction.category', 'category')
+            ->join('transaction.payment', 'payment')
+            ->select(
+                'transaction.id, category.name as categoryName, transaction.amount, 
+                transaction.comment, payment.name as paymentMethod')
+//            ->orderBy('category.name')
             ->getQuery()
             ->execute();
     }
