@@ -1,90 +1,206 @@
 {% extends 'main.html.twig' %}
 
 {% block body %}
-    <div class="ui segment">
-        <h2 class="ui header">
-            <div class="content">
-                Transactions
-            </div>
-        </h2>
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-        <table class="ui compact celled table" id="categories-table">
-            <thead>
-            <tr>
-                <th>Transaction id</th>
-                <th>Category</th>
-                <th>Amount</th>
-                <th>Comment</th>
-                <th>Payment type</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for transaction in transactionList %}
-            <tr>
-                <td>{{ transaction.id }}</td>
-                <td>{{ transaction.categoryName }}</td>
-                <td>{{ transaction.amount }}</td>
-                <td>{{ transaction.comment }}</td>
-                <td>{{ transaction.paymentMethod }}</td>
-            </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot class="full-width">
-            <tr>
-                <th colspan="5">
-                    <form class="ui form" name="category" method="post">
-                        {{ form_start(transactionForm) }}
-                        <div class="fields">
-                            <div class="field">
-                                {{ form_widget(transactionForm.category, {'attr': {'class': 'field'}}) }}
-                            </div>
-                            <div class="field">
-                                {{ form_widget(transactionForm.amount, {'attr': {'class': 'field', 'placeholder': 'Amount'}}) }}
-                            </div>
-                            <div class="field">
-                                {{ form_widget(transactionForm.payment, {'attr': {'class': 'field'}}) }}
-                            </div>
-                            <div class="field">
-                                {{ form_widget(transactionForm.comment, {'attr': {'class': 'field', 'placeholder': 'Comment'}}) }}
-                            </div>
-                            <div class="field">
-                                <button type="submit" class="ui right floated primary labeled icon button">
-                                    <i class="plus icon"></i> Add new transaction
-                                </button>
-                            </div>
+
+    <div class="ui sixteen wide column">
+        <div class="ui segment">
+            <h2 class="ui header">
+                <i class="money icon"></i>
+                <div class="content">
+                    Transactions
+                </div>
+            </h2>
+
+            <div class="ui divider"></div>
+
+            <div class="ui two column grid">
+                <div class="ui thirteen wide column">
+                    <canvas id="chart" height="75"></canvas>
+                </div>
+                <div class="ui three wide column" id="transactions-statistics-column">
+                    <div class="ui two statistic">
+                        <div class="label">
+                            Transactions last month
                         </div>
-                        {{ form_end(transactionForm) }}
-                    </form>
-                </th>
-            </tr>
-            </tfoot>
-        </table>
-        {{ form_start(transactionBetweenDatesForm) }}
-            {{ form_widget(transactionBetweenDatesForm.dateRange, {'attr': {'data-range': 'true',
-                'data-multiple-dates-separator': ' , ', 'data-language': 'en', 'data-date-format': 'yyyy-mm-dd',
-                'data-position': 'top left', 'class': 'datepicker-here'
-            }}) }}
-            <button type="submit">Find transactions</button>
-        {{ form_end(transactionBetweenDatesForm) }}
+                        <div class="value">
+                            40,509
+                        </div>
+                        <div class="ui hidden divider"></div>
+                        <div class="label">
+                            Largest transaction
+                        </div>
+                        <div class="value">
+                            229
+                        </div>
+                        <div class="label">
+                            Witcher 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui divider"></div>
+            <h2 class="ui header">Last transactions</h2>
+            <div class="ui hidden divider"></div>
+            <div class="ui one column grid">
+                <div class="ui sixteen wide centered column">
+
+                    <table class="ui striped sortable celled table" id="categories-table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Comment</th>
+                            <th>Payment type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for transaction in transactionList %}
+                            <tr>
+                                <td>{{ transaction.id }}</td>
+                                <td>{{ transaction.categoryName }}</td>
+                                <td>{{ transaction.amount }}</td>
+                                <td>{{ transaction.comment }}</td>
+                                <td>{{ transaction.paymentMethod }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot class="full-width">
+                        <tr>
+                            <th colspan="5">
+                                <form class="ui form" name="category" method="post">
+                                    {{ form_start(transactionForm) }}
+                                    <div class="fields">
+                                        <div class="field">
+                                            {{ form_widget(transactionForm.category, {'attr': {'class': 'field'}}) }}
+                                        </div>
+                                        <div class="field">
+                                            {{ form_widget(transactionForm.amount, {'attr': {'class': 'field', 'placeholder': 'Amount'}}) }}
+                                        </div>
+                                        <div class="field">
+                                            {{ form_widget(transactionForm.payment, {'attr': {'class': 'field'}}) }}
+                                        </div>
+                                        <div class="field">
+                                            {{ form_widget(transactionForm.comment, {'attr': {'class': 'field', 'placeholder': 'Comment'}}) }}
+                                        </div>
+                                        <div class="field">
+                                            <button type="submit" class="ui right floated primary labeled icon button">
+                                                <i class="plus icon"></i> Add new transaction
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {{ form_end(transactionForm) }}
+                                </form>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <h2 class="ui header">Transactions filter</h2>
+            <div class="ui hidden divider"></div>
+            {{ form_start(transactionBetweenDatesForm, {'attr': {'class': 'ui form'}}) }}
+            <div class="fields">
+                <div class="field">
+                    {{ form_widget(transactionBetweenDatesForm.dateRange, {'attr': {'data-range': 'true',
+                        'data-multiple-dates-separator': ' , ', 'data-language': 'en', 'data-date-format': 'yyyy-mm-dd',
+                        'data-position': 'top left', 'class': 'datepicker-here'
+                    }}) }}
+                </div>
+                <div class="field">
+                    <button type="submit" class="ui button">Find transactions</button>
+                </div>
+            </div>
+            {{ form_end(transactionBetweenDatesForm) }}
+
+            {% if transactionRange is defined %}
+                <table class="ui single line table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category name</th>
+                        <th>Amount</th>
+                        <th>Comment</th>
+                        <th>Payment method</th>
+                        <th>Date created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for transaction in transactionRange %}
+                        <tr>
+                            <td>{{ transaction.id }}</td>
+                            <td>{{ transaction.categoryName }}</td>
+                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.comment }}</td>
+                            <td>{{ transaction.paymentMethod }}</td>
+                            <td>{{ transaction.createdAt|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% endif %}
+        </div>
     </div>
-    {% if transactionRange is defined %}
-        {% for transaction in transactionRange %}
-            <div>id: {{ transaction.id }}</div>
-            <div>category name: {{ transaction.categoryName }}</div>
-            <div>amount: {{ transaction.amount }}</div>
-            <div>comment: {{ transaction.comment }}</div>
-            <div>paymentMethod: {{ transaction.paymentMethod }}</div>
-            <div>createdAt: {{ transaction.createdAt|date('Y-m-d H:i:s') }}</div>
-        {% endfor %}
-    {% endif %}
 {% endblock %}
 {% block javascripts %}
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.semanticui.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
+            $('#categories-table').DataTable();
             $('.js-datepicker').datepicker({
                 language: 'en',
             })
         });
+    </script>
+
+    <script>
+        window.onload = function () {
+            const ctx = document.getElementById("chart");
+
+            function lastMonth() {
+                return (new Array(30)).fill(1).map((element, index) => {
+                    let today = new Date();
+                    let newDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() - index);
+                    return newDate.getDate() + '/' + newDate.getMonth() + '/' + newDate.getFullYear();
+                }).reverse();
+            }
+
+            const borderColor = [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ];
+
+            const backgroundColor = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ];
+
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: lastMonth(),
+                    datasets: [{
+                        label: 'Transactions last month',
+                        data: [12, 19, 3, 5, 2, 3, 12, 33, 44, 5, 52, 5, 12, 23, 2],
+                        backgroundColor,
+                        borderColor,
+                        borderWidth: 1
+                    }]
+                }
+            });
+
+        }
     </script>
 {% endblock %}

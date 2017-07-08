@@ -4,6 +4,7 @@ window.notie = require('notie');
 window.$ = window.jQuery = require('jquery');
 window.axios = require('axios');
 window.datepicker = require('air-datepicker');
+window.dt = require( 'datatables.net' )(window, $);
 import '../../../../node_modules/air-datepicker/dist/css/datepicker.css';
 // Vue.component('home', require('./components/Home.vue'));
 // Vue.component('landing', require('./components/Landing.vue'));
