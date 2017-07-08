@@ -61,15 +61,29 @@
             </tfoot>
         </table>
         {{ form_start(transactionBetweenDatesForm) }}
-            {{ form_widget(transactionBetweenDatesForm.dateInterval) }}
-            {{ form_widget(transactionBetweenDatesForm.send) }}
+            {{ form_widget(transactionBetweenDatesForm.dateRange, {'attr': {'data-range': 'true',
+                'data-multiple-dates-separator': ' , ', 'data-language': 'en', 'data-date-format': 'yyyy-mm-dd',
+                'data-position': 'top left', 'class': 'datepicker-here'
+            }}) }}
+            <button type="submit">Find transactions</button>
         {{ form_end(transactionBetweenDatesForm) }}
     </div>
+    {% if transactionRange is defined %}
+        {% for transaction in transactionRange %}
+            <div>id: {{ transaction.id }}</div>
+            <div>category name: {{ transaction.categoryName }}</div>
+            <div>amount: {{ transaction.amount }}</div>
+            <div>comment: {{ transaction.comment }}</div>
+            <div>paymentMethod: {{ transaction.paymentMethod }}</div>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
     <script>
         $(document).ready(function(){
-           $('.js-datepicker').datepicker();
+            $('.js-datepicker').datepicker({
+                language: 'en',
+            })
         });
     </script>
 {% endblock %}

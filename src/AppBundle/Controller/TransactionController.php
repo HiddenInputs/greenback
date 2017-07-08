@@ -12,49 +12,55 @@ class TransactionController extends Controller
 {
     public function newAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
 
         $form = $this->createForm(TransactionType::class);
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
-        $form->handleRequest($request);
-        $this->createTransactionBetweenDatesForm()->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $transactionDateForm = $this->createTransactionBetweenDatesForm();
 
-            $transaction = $form->getData();
-            $transaction->setUser($this->getUser());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($transaction);
-            $em->flush();
-
-            return $this->redirectToRoute('homepage_main');
-        }
-
-        return $this->render('transaction/new.html.twig',[
+        $viewParams =   [
             'transactionForm' => $form->createView(),
             'transactionList' => $transaction->findAllTransactionsOrderedByCategoryName(),
             'transactionBetweenDatesForm' => $this->createTransactionBetweenDatesForm()->createView()
-        ]);
-    }
+        ];
 
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            $transactionDateForm->handleRequest($request);
+
+            if ($form->isSubmitted()) {
+                $transaction = $form->getData();
+                $transaction->setUser($this->getUser());
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($transaction);
+                $em->flush();
+
+                return $this->redirectToRoute('homepage_main');
+            } else if ($transactionDateForm->isSubmitted()) {
+                $dateForm = $request->request->get('form');
+                $dateRange = explode(' , ',$dateForm['dateRange']);
+                $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
+
+                if(!empty($dateRange[0] && !empty($dateRange[1]))) {
+                    $viewParams['transactionRange'] = $transaction->findAllTransactionsBetweenSelectedDates($dateRange[0],$dateRange[1]);
+                }
+            }
+
+        }
+
+        return $this->render('transaction/new.html.twig',$viewParams);
+    }
 
     private function createTransactionBetweenDatesForm()
     {
         $defaultData = ['message' => 'Select transaction in dates'];
         $transactionBetweenDatesForm = $this->createFormBuilder($defaultData)
-            ->add('dateInterval', DateType::class, [
+            ->add('dateRange', DateType::class, [
                 'widget' => 'single_text',
-                'attr' => [
-                    'data-range' =>true,
-                    'data-multiple-dates-separator'=> " - ",
-                    'data-language'=>'en',
-                    'class' => 'js-datepicker',
-                ],
                 'html5' => false
             ])
-            ->add('send', SubmitType::class)
             ->getForm();
 
         return $transactionBetweenDatesForm;

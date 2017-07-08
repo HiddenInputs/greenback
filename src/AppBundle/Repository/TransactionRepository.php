@@ -34,7 +34,27 @@ class TransactionRepository extends EntityRepository
             ->select(
                 'transaction.id, category.name as categoryName, transaction.amount, 
                 transaction.comment, payment.name as paymentMethod')
-//            ->orderBy('category.name')
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param $from \DateTime
+     * @param $to \DateTime
+     * @return Transaction[]
+     */
+    public function findAllTransactionsBetweenSelectedDates($from, $to)
+    {
+
+        return $this->createQueryBuilder('transaction')
+            ->join('transaction.category', 'category')
+            ->join('transaction.payment', 'payment')
+            ->select(
+                'transaction.id, category.name as categoryName, transaction.amount, 
+                transaction.comment, payment.name as paymentMethod')
+            ->where('transaction.createdAt BETWEEN :from AND :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to)
             ->getQuery()
             ->execute();
     }
