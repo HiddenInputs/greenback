@@ -1,3 +1,11 @@
 payment_new:
     path: /payment/
     defaults: { _controller: AppBundle:Payment:new }
+
+payment_edit:
+    path: /payment/{id}/edit
+    defaults: { _controller: AppBundle:Payment:edit }
+
+payment_delete:
+    path: /payment/{id}/delete
+    defaults: { _controller: AppBundle:Payment:delete }

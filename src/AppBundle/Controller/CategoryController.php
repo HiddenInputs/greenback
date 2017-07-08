@@ -57,14 +57,14 @@ class CategoryController extends Controller
 
     public function deleteAction(Category $category)
     {
+
         if (!$category) {
-            throw $this->createNotFoundException('No category found');
+            return new JsonResponse(['status' => false]);
         }
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
         $em->flush();
-
-        return $this->redirectToRoute('category_new');
+        return new JsonResponse(['status' => true]);
     }
 }

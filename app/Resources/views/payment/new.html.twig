@@ -2,3 +2,13 @@
     {{ form_widget(paymentForm) }}
     <button type="submit">Submit</button>
 {{ form_end(paymentForm) }}
+
+
+{% for paymentMethod in paymentMethodList %}
+    <div>{{ paymentMethod.name }}</div>
+    <div>{{ paymentMethod.createdAt|date('Y-m-d H:i:s') }}</div>
+    <a href="{{ path('payment_edit',{'id': paymentMethod.id}) }}">Edit Payment</a>
+    <a href="{{ path('payment_delete', {'id' : paymentMethod.id}) }}">Delete Payment</a>
+{% endfor %}
+
+
