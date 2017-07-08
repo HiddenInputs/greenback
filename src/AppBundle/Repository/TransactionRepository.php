@@ -51,7 +51,7 @@ class TransactionRepository extends EntityRepository
             ->join('transaction.payment', 'payment')
             ->select(
                 'transaction.id, category.name as categoryName, transaction.amount, 
-                transaction.comment, payment.name as paymentMethod')
+                transaction.comment, payment.name as paymentMethod, transaction.createdAt')
             ->where('transaction.createdAt BETWEEN :from AND :to')
             ->setParameter('from', $from)
             ->setParameter('to', $to)

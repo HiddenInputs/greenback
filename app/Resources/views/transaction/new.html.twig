@@ -75,6 +75,7 @@
             <div>amount: {{ transaction.amount }}</div>
             <div>comment: {{ transaction.comment }}</div>
             <div>paymentMethod: {{ transaction.paymentMethod }}</div>
+            <div>createdAt: {{ transaction.createdAt|date('Y-m-d H:i:s') }}</div>
         {% endfor %}
     {% endif %}
 {% endblock %}
