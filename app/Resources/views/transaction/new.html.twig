@@ -60,5 +60,16 @@
             </tr>
             </tfoot>
         </table>
+        {{ form_start(transactionBetweenDatesForm) }}
+            {{ form_widget(transactionBetweenDatesForm.dateInterval) }}
+            {{ form_widget(transactionBetweenDatesForm.send) }}
+        {{ form_end(transactionBetweenDatesForm) }}
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+           $('.js-datepicker').datepicker();
+        });
+    </script>
 {% endblock %}

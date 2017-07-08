@@ -3,6 +3,7 @@ window.Chart = require('chart.js');
 window.notie = require('notie');
 window.$ = window.jQuery = require('jquery');
 window.axios = require('axios');
+window.datepicker = require('air-datepicker');
 // Vue.component('home', require('./components/Home.vue'));
 // Vue.component('landing', require('./components/Landing.vue'));
 // Vue.component('login', require('./components/Login.vue'));
