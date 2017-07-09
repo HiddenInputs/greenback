@@ -14,13 +14,13 @@ class CategoryController extends Controller
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
 
-        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
+        $category = $this->getDoctrine()->getRepository('AppBundle:Category');
 
         $form = $this->createForm(CategoryType::class);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
+
             $category->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
@@ -28,13 +28,12 @@ class CategoryController extends Controller
 
             $this->addFlash('success', 'New category has been created');
 
-
             return $this->redirectToRoute('homepage_main');
         }
 
         return $this->render('category/index.html.twig', [
             'categoryForm' => $form->createView(),
-            'transactionDetails' => $transaction->findAllTransactionDetailsGroupedByName()
+            'categories' => $category->findAllCategoriesOrderedByName($this->getUser())
         ]);
     }
 

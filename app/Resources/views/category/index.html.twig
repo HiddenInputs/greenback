@@ -10,7 +10,7 @@
         <div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>
         <div class="ui cards">
-        {% for detail in transactionDetails %}
+        {% for category in categories %}
                 {% include 'partials/card.html.twig' %}
         {% endfor %}
         </div>
@@ -22,8 +22,10 @@
                     {{ form_widget(categoryForm.name,{'attr': {'class' :'form-control', 'placeholder': 'Category name'}}) }}
                 </div>
                 <div class="field">
-                    <button type="submit" class="ui right floated primary labeled icon button">
-                        <i class="plus icon"></i> Add new category
+                    <button>
+                        <a href="{{ path('category_new') }}"
+                           class="ui right floated primary labeled icon button">
+                        <i class="plus icon"></i> Add new category</a>
                     </button>
                 </div>
             </div>

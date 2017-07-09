@@ -12,22 +12,6 @@ class TransactionRepository extends EntityRepository
     /**
      * @return Transaction[]
      */
-    public function findAllTransactionDetailsGroupedByName()
-    {
-        return $this->createQueryBuilder('transaction')
-            ->join('transaction.category', 'category')
-            ->select(
-                'category.id, category.name, SUM(transaction.amount) as totalTransactions, 
-                MAX(transaction.amount) as theLargestTransaction'
-            )
-            ->groupBy('category.name')
-            ->getQuery()
-            ->execute();
-    }
-
-    /**
-     * @return Transaction[]
-     */
     public function findAllTransactionsOrderedByCategoryName()
     {
         $qb = $this->createQueryBuilder('transaction')
