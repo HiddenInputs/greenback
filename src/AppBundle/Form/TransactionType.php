@@ -4,8 +4,11 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Payment;
+use AppBundle\Entity\User;
+use AppBundle\Form\DataTransformer\UserToIdTransformer;
 use AppBundle\Repository\CategoryRepository;
 use AppBundle\Repository\PaymentRepository;
+use Doctrine\ORM\EntityManager;
 use function Sodium\add;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,14 +20,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TransactionType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $user= $options['data'];
+
+//        dump($user);die;
         $builder
             ->add('category', EntityType::class, [
                 'placeholder' => 'Choose a category',
                 'class' => Category::class,
-                'query_builder' => function(CategoryRepository $categoryRepository) {
-                    return $categoryRepository->findAllCategoriesOrderedByName();
+                'query_builder' => function(CategoryRepository $categoryRepository) use ($user) {
+                    return $categoryRepository->findAllCategoriesOrderedByName($user);
                 },
                 'label' => false
             ])
@@ -43,12 +52,14 @@ class TransactionType extends AbstractType
             ->add('comment', TextType::class, [
                 'label' => false
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => 'AppBundle\Entity\Transaction'
+           'data_class' => 'AppBundle\Entity\Transaction',
+
         ]);
     }
 

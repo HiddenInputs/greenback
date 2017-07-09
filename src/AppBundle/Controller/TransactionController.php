@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Form\TransactionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 class TransactionController extends Controller
@@ -14,8 +13,7 @@ class TransactionController extends Controller
     {
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
-
-        $form = $this->createForm(TransactionType::class);
+        $form = $this->createForm(TransactionType::class, $this->getUser());
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
 
         $transactionDateForm = $this->createTransactionBetweenDatesForm();

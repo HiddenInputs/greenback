@@ -2,13 +2,23 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping;
 
 class CategoryRepository extends EntityRepository
 {
-    public function findAllCategoriesOrderedByName()
+
+    /**
+     * @param User $user
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findAllCategoriesOrderedByName(User $user)
     {
         return $this->createQueryBuilder('category')
-            ->orderBy('category.name', 'ASC');
+            ->andWhere('category.user = :user')
+            ->orderBy('category.name', 'ASC')
+            ->setParameter('user', $user);
+
     }
 }
