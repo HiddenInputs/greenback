@@ -9,59 +9,26 @@
         </h2>
         <div class="ui hidden divider"></div>
         <div class="ui hidden divider"></div>
-        <table class="ui compact celled definition table" id="categories-table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Category name</th>
-                <th>Total transactions</th>
-                <th>Largest transaction</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for detail in transactionDetails %}
-            <tr>
-                <td class="collapsing">
-                    <a onclick="editCategory({{ detail.id }}, '{{ detail.name }}')">
-                    <button class="ui icon green button">
-                        <i class="pencil icon"></i>
+        <div class="ui cards">
+        {% for detail in transactionDetails %}
+                {% include 'partials/card.html.twig' %}
+        {% endfor %}
+        </div>
+        <div class="ui hidden divider"></div>
+        <form class="ui form" name="category" method="post">
+            {{ form_start(categoryForm) }}
+            <div class="fields">
+                <div class="field">
+                    {{ form_widget(categoryForm.name,{'attr': {'class' :'form-control', 'placeholder': 'Category name'}}) }}
+                </div>
+                <div class="field">
+                    <button type="submit" class="ui right floated primary labeled icon button">
+                        <i class="plus icon"></i> Add new category
                     </button>
-                    </a>
-                    <a href="{{ path('category_delete', {'id' : detail.id}) }}">
-                    <button class="ui icon red button">
-                        <i class="trash icon"></i>
-                    </button>
-                    </a>
-                </td>
-                <td data-type="category-name" data-id="{{ detail.id }}">{{ detail.name }}</td>
-                <td>{{ detail.totalTransactions }}</td>
-                <td>{{ detail.theLargestTransaction }}</td>
-            </tr>
-            {% endfor %}
-
-            </tbody>
-            <tfoot class="full-width">
-            <tr>
-                <th></th>
-                <th colspan="3">
-                    <form class="ui form" name="category" method="post">
-                        {{ form_start(categoryForm) }}
-                        <div class="fields">
-                        <div class="field">
-                            {{ form_widget(categoryForm.name,{'attr': {'class' :'form-control', 'placeholder': 'Category name'}}) }}
-                        </div>
-                        <div class="field">
-                            <button type="submit" class="ui right floated primary labeled icon button">
-                                <i class="plus icon"></i> Add new category
-                            </button>
-                        </div>
-                    </div>
-                        {{ form_widget(categoryForm._token)}}
-                        {{ form_end(categoryForm) }}
-                    </form>
-                </th>
-            </tr>
-            </tfoot>
-        </table>
+                </div>
+            </div>
+            {{ form_widget(categoryForm._token) }}
+            {{ form_end(categoryForm) }}
+        </form>
     </div>
 {% endblock %}
