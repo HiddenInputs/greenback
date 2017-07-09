@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Transaction;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 class TransactionRepository extends EntityRepository
 {
@@ -28,14 +29,14 @@ class TransactionRepository extends EntityRepository
      */
     public function findAllTransactionsOrderedByCategoryName()
     {
-        return $this->createQueryBuilder('transaction')
-            ->join('transaction.category', 'category')
-            ->join('transaction.payment', 'payment')
+        $qb = $this->createQueryBuilder('transaction')
             ->select(
                 'transaction.id, category.name as categoryName, transaction.amount, 
-                transaction.comment, payment.name as paymentMethod')
-            ->getQuery()
-            ->execute();
+                transaction.comment, payment.name as paymentMethod');
+        $this->addCategoryAndPaymentJoin($qb);
+
+        $query = $qb->getQuery();
+        return  $query->execute();
     }
 
     /**
@@ -46,16 +47,26 @@ class TransactionRepository extends EntityRepository
     public function findAllTransactionsBetweenSelectedDates($from, $to)
     {
 
-        return $this->createQueryBuilder('transaction')
-            ->join('transaction.category', 'category')
-            ->join('transaction.payment', 'payment')
+        $qb = $this->createQueryBuilder('transaction')
             ->select(
                 'transaction.id, category.name as categoryName, transaction.amount, 
                 transaction.comment, payment.name as paymentMethod, transaction.createdAt')
             ->where('transaction.createdAt BETWEEN :from AND :to')
             ->setParameter('from', $from)
-            ->setParameter('to', $to)
-            ->getQuery()
-            ->execute();
+            ->setParameter('to', $to);
+
+        $this->addCategoryAndPaymentJoin($qb);
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @return QueryBuilder
+     */
+    private function addCategoryAndPaymentJoin(QueryBuilder $qb)
+    {
+        return $qb->join('transaction.category', 'category')
+            ->join('transaction.payment', 'payment');
     }
 }
