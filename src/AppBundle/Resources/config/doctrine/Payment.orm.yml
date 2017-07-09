@@ -12,6 +12,9 @@ AppBundle\Entity\Payment:
         name:
             type: string
             length: 255
+        logo:
+            type: string
+            length: 255
         createdAt:
             type: datetime
     manyToOne:

@@ -30,9 +30,14 @@ class Payment
     private $transactions;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      */
     private $user;
+
+    /**
+     * @var string
+     */
+    private $logo;
 
 
     public function __construct()
@@ -160,5 +165,28 @@ class Payment
     public function __toString()
     {
         return $this->name;
+    }
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Payment
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

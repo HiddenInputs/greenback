@@ -34,6 +34,11 @@ class Category
      */
     private $user;
 
+    /**
+     * @var string
+     */
+    private $logo;
+
 
     /**
      * Constructor
@@ -118,7 +123,7 @@ class Category
     /**
      * Remove transaction
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param Transaction $transaction
      */
     public function removeTransaction(Transaction $transaction)
     {
@@ -162,5 +167,29 @@ class Category
     public function __toString()
     {
          return $this->name;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Category
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

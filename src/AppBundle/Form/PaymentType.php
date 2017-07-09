@@ -11,7 +11,8 @@ class PaymentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name');
+            ->add('name')
+            ->add('logo');
     }
 
     public function configureOptions(OptionsResolver $resolver)
