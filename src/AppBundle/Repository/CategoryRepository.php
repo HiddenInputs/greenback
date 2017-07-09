@@ -9,10 +9,6 @@ use Doctrine\ORM\Mapping;
 class CategoryRepository extends EntityRepository
 {
 
-    /**
-     * @param User $user
-     * @return \Doctrine\ORM\QueryBuilder
-     */
     public function findAllCategoriesOrderedByName(User $user)
     {
         return $this->createQueryBuilder('category')
@@ -21,4 +17,19 @@ class CategoryRepository extends EntityRepository
             ->setParameter('user', $user);
 
     }
+
+//    /**
+//     * @param $user
+//     * @return \Doctrine\ORM\QueryBuilder
+//     */
+//    public function findAllCategoriesOrderedByName($user)
+//    {
+//        return $this->createQueryBuilder('category')
+//            ->andWhere('category.user = :user')
+//            ->orderBy('category.name', 'ASC')
+//            ->setParameter('user', $user);
+//
+//    }
+
+
 }

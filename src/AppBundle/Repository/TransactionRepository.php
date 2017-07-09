@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Transaction;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 
@@ -69,4 +70,29 @@ class TransactionRepository extends EntityRepository
         return $qb->join('transaction.category', 'category')
             ->join('transaction.payment', 'payment');
     }
+
+    /**
+     * @param User $user
+     * @return QueryBuilder
+     */
+    public function findFirstTransactionByLoggedUser(User $user)
+    {
+          return $this->createQueryBuilder('transaction')
+                ->andWhere('transaction.id = :user')
+                ->setParameter('user', $user)
+                ->getQuery()
+                ->getOneOrNullResult();
+    }
+
+//    /**
+//     * @return QueryBuilder
+//     */
+//    public function findFirstTransactionByLoggedUser($user)
+//    {
+//        return $this->createQueryBuilder('transaction')
+//            ->andWhere('transaction.id = :user')
+//            ->setParameter('user', $user)
+//            ->getQuery()
+//            ->getOneOrNullResult();
+//    }
 }

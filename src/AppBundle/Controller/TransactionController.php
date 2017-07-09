@@ -13,6 +13,11 @@ class TransactionController extends Controller
     {
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
+
+//        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
+//        $user = $transaction->findFirstTransactionByLoggedUser($this->getUser());
+//        $form = $this->createForm(TransactionType::class, $user);
+
         $form = $this->createForm(TransactionType::class, $this->getUser());
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
 
