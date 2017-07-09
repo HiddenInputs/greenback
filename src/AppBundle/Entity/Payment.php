@@ -39,6 +39,11 @@ class Payment
      */
     private $logo;
 
+    /**
+     * @var boolean
+     */
+    private $isDefault;
+
 
     public function __construct()
     {
@@ -188,5 +193,29 @@ class Payment
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Set isDefault
+     *
+     * @param boolean $isDefault
+     *
+     * @return Payment
+     */
+    public function setIsDefault($isDefault)
+    {
+        $this->isDefault = $isDefault;
+
+        return $this;
+    }
+
+    /**
+     * Get isDefault
+     *
+     * @return boolean
+     */
+    public function getIsDefault()
+    {
+        return $this->isDefault;
     }
 }

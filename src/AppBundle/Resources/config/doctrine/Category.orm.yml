@@ -16,6 +16,9 @@ AppBundle\Entity\Category:
         logo:
             type: string
             length: 255
+            nullable: true
+        isDefault:
+            type: boolean
         createdAt:
             type: datetime
     manyToOne:

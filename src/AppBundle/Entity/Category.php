@@ -39,6 +39,10 @@ class Category
      */
     private $logo;
 
+    /**
+     * @var boolean
+     */
+    private $isDefault;
 
     /**
      * Constructor
@@ -191,5 +195,29 @@ class Category
     public function getLogo()
     {
         return $this->logo;
+    }
+
+    /**
+     * Set isDefault
+     *
+     * @param boolean $isDefault
+     *
+     * @return Category
+     */
+    public function setIsDefault($isDefault)
+    {
+        $this->isDefault = $isDefault;
+
+        return $this;
+    }
+
+    /**
+     * Get isDefault
+     *
+     * @return boolean
+     */
+    public function getIsDefault()
+    {
+        return $this->isDefault;
     }
 }
