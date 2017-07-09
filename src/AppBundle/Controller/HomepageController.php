@@ -17,6 +17,7 @@ class HomepageController extends Controller
 
     public function mainAction(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
         return $this->render('pages/home.html.twig');
     }
 }
