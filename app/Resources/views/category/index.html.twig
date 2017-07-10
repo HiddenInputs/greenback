@@ -22,10 +22,8 @@
                     {{ form_widget(categoryForm.name,{'attr': {'class' :'form-control', 'placeholder': 'Category name'}}) }}
                 </div>
                 <div class="field">
-                    <button>
-                        <a href="{{ path('category_new') }}"
-                           class="ui right floated primary labeled icon button">
-                        <i class="plus icon"></i> Add new category</a>
+                    <button class="ui right floated primary labeled icon button">
+                        <i class="plus icon"></i><a href="{{ path('category_new') }}"></a>Add new category
                     </button>
                 </div>
             </div>

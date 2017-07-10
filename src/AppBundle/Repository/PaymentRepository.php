@@ -4,20 +4,22 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Payment;
 use AppBundle\Entity\Transaction;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 class PaymentRepository extends EntityRepository
 {
 
-    public function findAllPaymentMethodsOrderedByName()
+    /**
+     * @param User $user
+     * @return Payment[]
+     */
+    public function findAllPaymentMethodsOrderedByName(User $user)
     {
         return $this->createQueryBuilder('payment')
-            ->orderBy('payment.name', 'ASC');
-    }
-
-    public function findAllPaymentMethods()
-    {
-        return $this->createQueryBuilder('payment')
+            ->andWhere('payment.user = :user')
+            ->orderBy('payment.name', 'ASC')
+            ->setParameter('user',$user)
             ->getQuery()
             ->execute();
     }

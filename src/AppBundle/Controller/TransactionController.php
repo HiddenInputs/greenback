@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Transaction;
 use AppBundle\Form\TransactionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -14,18 +15,17 @@ class TransactionController extends Controller
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Unable to access this page!');
 
-//        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
-//        $user = $transaction->findFirstTransactionByLoggedUser($this->getUser());
-//        $form = $this->createForm(TransactionType::class, $user);
+        $transaction = new Transaction();
+        $user = $transaction->setId($this->getUser()->getId());
 
-        $form = $this->createForm(TransactionType::class, $this->getUser());
+        $form = $this->createForm(TransactionType::class, $user);
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
 
         $transactionDateForm = $this->createTransactionBetweenDatesForm();
 
         $viewParams =   [
             'transactionForm' => $form->createView(),
-            'transactionList' => $transaction->findAllTransactionsOrderedByCategoryName(),
+            'transactionList' => $transaction->findAllTransactionsOrderedByCategoryName($this->getUser()),
             'transactionBetweenDatesForm' => $this->createTransactionBetweenDatesForm()->createView()
         ];
 
@@ -47,7 +47,7 @@ class TransactionController extends Controller
                 $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction');
 
                 if(!empty($dateRange[0] && !empty($dateRange[1]))) {
-                    $viewParams['transactionRange'] = $transaction->findAllTransactionsBetweenSelectedDates($dateRange[0],$dateRange[1]);
+                    $viewParams['transactionRange'] = $transaction->findAllTransactionsBetweenSelectedDates($this->getUser(),$dateRange[0],$dateRange[1]);
                 }
             }
 

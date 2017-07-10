@@ -200,4 +200,14 @@ class Transaction
     {
         return $this->payment;
     }
+
+    /**
+     * @param int $id
+     * @return Transaction
+     */
+    public function setId(int $id): Transaction
+    {
+        $this->id = $id;
+        return $this;
+    }
 }

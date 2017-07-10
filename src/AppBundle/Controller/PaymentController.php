@@ -30,7 +30,7 @@ class PaymentController extends Controller
 
         return $this->render('payment/new.html.twig',[
             'paymentForm' => $form->createView(),
-            'paymentMethodList' => $payment->findAllPaymentMethods()
+            'paymentMethodList' => $payment->findAllPaymentMethodsOrderedByName($this->getUser())
         ]);
     }
 

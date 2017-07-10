@@ -5,7 +5,6 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping;
 
 class CategoryRepository extends EntityRepository
 {
@@ -17,9 +16,9 @@ class CategoryRepository extends EntityRepository
     {
         return $this->createQueryBuilder('category')
             ->andWhere('category.user = :user')
-            ->orderBy('category.name', 'ASC')
             ->setParameter('user', $user)
             ->getQuery()
             ->execute();
     }
 }
+
